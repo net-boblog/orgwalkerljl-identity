@@ -1,0 +1,22 @@
+##附加属性
+#parse("common/edit/append-fields-simple.vm")
+
+##正文
+#if($!{editType} == "view")
+<div class="form-group">
+	<label class="col-sm-3 control-label no-padding-right" for="remark"> 创建者: </label>
+	$!{model.creator}
+</div>
+<div class="form-group">
+	<label class="col-sm-3 control-label no-padding-right" for="remark"> 更新者: </label>
+	$!{model.modifier}
+</div>
+<div class="form-group">
+	<label class="col-sm-3 control-label no-padding-right" for="remark"> 创建者: </label>
+	$utils.dateFormatDateTime($!{model.createdTime})
+</div>
+<div class="form-group">
+	<label class="col-sm-3 control-label no-padding-right" for="remark"> 更新者: </label>
+	$utils.dateFormatDateTime($!{model.modifiedTime})
+</div>
+#end

@@ -1,0 +1,14 @@
+#parse("common/index/head.vm")
+
+<th>ID</th>
+<th>用户ID</th>
+<th>用户名</th>
+<th>昵称</th>
+<th>状态</th>
+<th>更新时间</th>
+<th>更新者</th>
+#parse("common/index/bottom.vm")
+
+
+##导入js
+<script src="$!{localStaticRes}/js/sso/user.js?v=$!{v}"></script>

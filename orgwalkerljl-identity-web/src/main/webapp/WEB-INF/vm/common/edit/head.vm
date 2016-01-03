@@ -1,0 +1,12 @@
+<form name="$!{editForm}" action="$!{contextPath}$!{currentUrl}/save" method="POST" data-type="json" class="form-horizontal" role="form">
+#if ($!{editType} == "edit") 
+	<input type="hidden" id="id" name="id" value="$!{model.id}"/>
+#end
+#if ($!{editType} == "edit" || $!{editType} == "view") 
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> ID </label>
+		<div class="col-sm-9">
+			$!{model.id}
+		</div>
+	</div>
+#end

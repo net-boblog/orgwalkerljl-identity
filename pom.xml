@@ -10,18 +10,18 @@
 		<module>orgwalkerljl-identity-common</module>
 		<module>orgwalkerljl-identity-domain</module>
 		<module>orgwalkerljl-identity-dao</module>
-		<module>orgwalkerljl-identity-service</module>
-		<module>orgwalkerljl-identity-web</module>
-		<module>orgwalkerljl-identity-rpc</module>
-		<module>orgwalkerljl-identity-openservice</module>
 		<module>orgwalkerljl-identity-sdk</module>
+		<module>orgwalkerljl-identity-rpc</module>
+		<module>orgwalkerljl-identity-service</module>
+		<module>orgwalkerljl-identity-openservice</module>
+		<module>orgwalkerljl-identity-web</module>
 	</modules>
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<orgwalkerljl.commons.version>0.0.1-SNAPSHOT</orgwalkerljl.commons.version>
+		<orgwalkerljl.commons.version>1.0.2-SNAPSHOT</orgwalkerljl.commons.version>
 		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
+		<orgwalkerljl.smart.version>1.0.0-SNAPSHOT</orgwalkerljl.smart.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -50,41 +50,66 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<pfile>local.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<pfile>dev.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<pfile>test.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<pfile>production.properties</pfile>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencyManagement>
 		<dependencies>
-			<!-- orgwalkerljl commons -->
+			<!-- orgwalkerljl-smart -->
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-core</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-domain</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-log</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-dao</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-domain</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-service</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-dao</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-mvc</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
+
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-service</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.remoting</groupId>
+				<artifactId>orgwalkerljl-remoting-api</artifactId>
+				<version>${orgwalkerljl.remoting.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-mvc</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
-			</dependency>
-			
 			<dependency>
 				<groupId>org.walkerljl.remoting</groupId>
 				<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
@@ -99,12 +124,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>1.7.2</version
-				>
-			</dependency>
-			<dependency>
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
 				<version>0.7.1.RELEASE</version>
@@ -113,16 +132,6 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>5.1.19</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-fileupload</groupId>
-				<artifactId>commons-fileupload</artifactId>
-				<version>1.3.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>1.3.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -8,9 +8,6 @@
   <artifactId>orgwalkerljl-identity-common</artifactId>
   
   <dependencies>
-		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-core</artifactId>
-		</dependency>
+		
 	</dependencies>
 </project>

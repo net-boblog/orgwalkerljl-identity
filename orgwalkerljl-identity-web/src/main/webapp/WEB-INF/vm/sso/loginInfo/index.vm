@@ -1,0 +1,14 @@
+#parse("common/index/head.vm")
+
+<th>ID</th>
+<th>用户ID</th>
+<th>用户名</th>
+<th>登录IP</th>
+<th>登录终端</th>
+<th>登录时间</th>
+<th>登出时间</th>
+#parse("common/index/bottom.vm")
+
+
+##导入js
+<script src="$!{localStaticRes}/js/sso/loginInfo.js?v=$!{v}"></script>

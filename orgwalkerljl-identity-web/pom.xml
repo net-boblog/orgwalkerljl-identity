@@ -11,7 +11,7 @@
 
 	<build>
 		<filters>
-			<filter>src/main/resources/profiles/${pfile}</filter>
+			<filter>src/main/profiles/${pfile}</filter>
 		</filters>
 		<finalName>identity-web</finalName>
 		<resources>
@@ -42,36 +42,6 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<pfile>local.properties</pfile>
-			</properties>
-		</profile>
-		<profile>
-			<id>development</id>
-			<properties>
-				<pfile>development.properties</pfile>
-			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<pfile>test.properties</pfile>
-			</properties>
-		</profile>
-		<profile>
-			<id>production</id>
-			<properties>
-				<pfile>production.properties</pfile>
-			</properties>
-		</profile>
-	</profiles>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.walkerljl.identity</groupId>
@@ -80,20 +50,12 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-mvc</artifactId>
+			<groupId>org.walkerljl.smart</groupId>
+			<artifactId>orgwalkerljl-smart-mvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-io</artifactId>
 		</dependency>
 	</dependencies>
 </project>

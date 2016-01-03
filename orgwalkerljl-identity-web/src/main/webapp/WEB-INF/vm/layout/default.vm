@@ -1,81 +1,120 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>$!{appName}</title>
+		<meta name="keywords" content="www.walkerljl.org" />
+		<meta name="description" content="www.walkerljl.org" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>$!{appName}</title>
-<link rel="shortcut icon" href="http://www.360buy.com/favicon.ico"/>
+		<!-- basic styles -->
+		<link href="$!{staticRes}/ace/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="$!{staticRes}/ace/assets/css/font-awesome.min.css" />
 
-<!-- Loading Bootstrap css-->
-<link href="$!{staticRes}/plugin/bootstrap/css/bootstrap.min.css?v=$!{v}" rel="stylesheet"/>
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="$!{staticRes}/ace/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
 
-<!-- Loading ACE css-->
-<link href="$!{staticRes}/css/ace.min.css?v=$!{v}" rel="stylesheet"/>
-<!--[if lt IE 9]>
-<link rel="stylesheet" href="$!{staticRes}/css/ace-ie.min.css?v=$!{v}" />
-<![endif]--> 
-<link href="$!{staticRes}/css/ace-responsive.min.css?v=$!{v}" rel="stylesheet"/>
-<link href="$!{staticRes}/css/ace-skins.min.css?v=$!{v}" rel="stylesheet"/>
-<link href="$!{staticRes}/css/base.css?v=$!{v}" rel="stylesheet"/>
-<!-- Loading font-awesome css-->
-<link href="$!{staticRes}/plugin/bootstrap/css/font-awesome.min.css?v=$!{v}" rel="stylesheet">
-<!--[if IE 7]>
-<link rel="stylesheet" href="$!{staticRes}/css/font-awesome-ie7.min.css?v=$!{v}" />
-<![endif]--> 
+		<!-- page specific plugin styles -->
 
-<script src="$!{staticRes}/plugin/jquery/jquery-1.7.2.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/plugin/jquery/jquery-ui.min.js?v=$!{v}"></script>
-##应用jquery验证框架
-<script src="$!{staticRes}/plugin/jquery/jquery.validate.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/plugin/bootstrap/js/bootstrap.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/js/ace-elements.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/js/ace.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/js/base.js?v=$!{v}"></script>
-<script src="$!{staticRes}/plugin/jquery/jquery.validate.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/plugin/jquery/jquery.metadata.js?v=$!{v}"></script>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-<!--[if lt IE 9]>
-<script src="$!{staticRes}/plugin/bootstrap/js/html5shiv.js?v=$!{v}"></script>
-<![endif]-->
-</head>
-<body>
-	<input type="hidden" id="contextPath" value="$!{contextPath}"/>
-	<input type="hidden" id="currentUrl" value="$!{currentUrl}"/>
-	<div class="navbar navbar-inverse">
-		<div class="navbar-inner">
-		   <div class="container-fluid">
-			  <a class="brand" href="#"><small><i class="icon-key"></i> $!{appName}</small> </a>
-			  <div class="btn-group pull-right">
-				  <button data-toggle="dropdown" class="btn dropdown-toggle ">
-				      <span id="user_info">
-					  	<small><i class="icon-user"></i> $!{currentUser.userName} ,欢迎您</small> 
-					  </span>
-					  <i class="icon-angle-down icon-on-right"></i>
-				  </button>
+		<!-- fonts -->
 
-				  <ul class="dropdown-menu">
-					  <li class="disabled"><a href="javascript:void(0)"><i class="icon-cog "></i> 设置</a></li>
-					  ##<li ><a href="$!{system_basUrl}/toUpdatePwdPage"><i class="icon-user"></i> 修改密码</a></li>
-					  <li class="divider"></li>
-					  <li><a href="$!{system_basUrl}/logOut"><i class="icon-off"></i> 注销</a></li>
-				  </ul>
-			</div>
-		   </div><!--/.container-fluid-->
-	  </div><!--/.navbar-inner-->
-	</div>
-	
-	<div class="container-fluid" id="main-container">
-		<a href="#" id="menu-toggler"><span></span></a>
-		<!-- menu toggler -->
-		<div id="sidebar">
-			<!-- 加载系统菜单-->$!{systemMenu}
-		</div>
-		<!-- menu end -->
+		<!-- ace styles -->
+		<link rel="stylesheet" href="$!{staticRes}/ace/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="$!{staticRes}/ace/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="$!{staticRes}/ace/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="$!{staticRes}/ace/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="$!{staticRes}/ace/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="$!{staticRes}/ace/assets/js/html5shiv.js"></script>
+		<script src="$!{staticRes}/ace/assets/js/respond.min.js"></script>
+		<![endif]-->
 		
-		<div id="main-content" class="clearfix">
-			$!{screen_content}
-		</div>
-	</div>
-</body>
+		<!--[if !IE]> -->
+			<script type="text/javascript">
+				window.jQuery || document.write("<script src='$!{staticRes}/ace/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			</script>
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+			<script type="text/javascript">
+			 window.jQuery || document.write("<script src='$!{staticRes}/ace/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		
+		##jarvis plugin core module
+		<script src="$!{localStaticRes}/js/jarvis/jarvis.js?v=$!{v}"></script>
+		<script src="$!{localStaticRes}/js/jarvis/jarvis.mvc.js?v=$!{v}"></script>
+	</head>
+
+	<body>
+		<!-- 隐藏域-->
+		<input type="hidden" id="contextPath" value="$!{contextPath}"/>
+		<input type="hidden" id="currentUrl" value="$!{currentUrl}"/>
+		<input type="hidden" id="objectIdentifer" value="$!{objectIdentifer}"/>
+		<!-- 导航条-->
+		#parse("layout/navbar.vm")
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				
+				<!-- 侧边栏-->
+				#parse("layout/sidebar.vm")
+
+				<div class="main-content">
+				<!-- 面包屑导航条-->
+				#parse("layout/breadcrumb.vm")
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+										<div id="main-content"> $!{screen_content}</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				<!-- 设置工具-->
+				#parse("layout/settings.vm")
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		
+		<!-- basic scripts -->
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='$!{staticRes}/ace/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="$!{staticRes}/ace/assets/js/bootstrap.min.js"></script>
+		<script src="$!{staticRes}/ace/assets/js/typeahead-bs2.min.js"></script>
+		<!-- page specific plugin scripts -->
+
+		<!-- ace scripts -->
+		<script src="$!{staticRes}/ace/assets/js/ace-elements.min.js"></script>
+		<script src="$!{staticRes}/ace/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script src="$!{staticRes}/js/require.js?v=$!{v}" defer async="true"></script>
+	</body>
 </html>
