@@ -1,9 +1,12 @@
 ##附加属性-简单
-<div class="form-group">
-	<label class="col-sm-3 control-label no-padding-right" for="remark"> 备注: </label>
-	#if($!{editType} == "add" || $!{editType} == "edit") 
-		<textarea id="remark" name="remark" class="col-xs-10 col-sm-5"></textarea>
-	#elseif($!{editType} == "view")
-		$!{model.remark}
-	#end   
-</div>
+<tr>
+	<td>备注：</td>
+	<td colspan="3">
+		#if($!{editType} == "add" || $!{editType} == "edit") 
+		<textarea id="remark" name="remark" style="width:100%;height:50px;" class="required" 
+			maxlength="256">#if($!{editType} == "edit")$!{model.remark}#end</textarea>
+		#elseif($!{editType} == "view")
+			$!{model.remark}
+		#end   			
+	</td>
+</tr>

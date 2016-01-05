@@ -181,21 +181,21 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	};
 	
 	/**
-	 * 全选反选
+	 * 切换checkbox选中状态
 	 */
-	$$.checkAll = function(chk, key) {
-		if ($(chk).attr("checked") == "checked") {
-			$("input[name="+key+"]").attr("checked", "checked");
+	$$.switchCheckboxCheckedStatus = function(domId, checkboxName) {
+		if ($("#" + domId).attr("checked") == "checked") {
+			$("input[name=" + checkboxName + "]").attr("checked", "checked");
 		} else {
-			$("input[name="+key+"]").removeAttr("checked");
+			$("input[name=" + checkboxName + "]").removeAttr("checked");
 		}
 	};
 	
 	/**
 	 * 获取所有选中checkbox的值
 	 */
-	$$.getCheckedValues = function(chk) {
-		var selects = $("input[name="+chk+"]:checked");
+	$$.getCheckedCheckboxValues = function(checkboxName) {
+		var selects = $("input[name=" + checkboxName + "]:checked");
 		var len = selects.length;
 		if (selects == null || len == 0) {
 			return "";

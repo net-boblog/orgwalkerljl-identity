@@ -100,8 +100,8 @@
 	
 	$$_NS.getIdColumn = function(data) {
 		var string = 
-				"<td class=\"center\" style=\"width:5%;\"><label>" +
-					"<input value='"+data+"' name='"+$$.MVC.CURD.checkboxItemIdentifer +"' type='checkbox'/ class=\"ace\">" +
+				"<td style=\"width:5%;\"><label>" +
+					"<input value='"+data+"' name='"+$$.MVC.CURD.checkboxItemIdentifer +"' type='checkbox'/ class=\"ace\" style=\"text-align:center;\">" +
 					"<span class='lbl'></span>" +
 				"</label></td>";
 		return string;

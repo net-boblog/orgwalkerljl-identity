@@ -65,8 +65,8 @@
 	/**
 	 * 全选/反选
 	 */
-	$$_NS.checkAll = function() {
-		$$.checkAll('#' + $$_NS.checkboxIdentifer, $$_NS.checkboxItemIdentifer);
+	$$_NS.switchCheckboxCheckedStatus = function() {
+		$$.switchCheckboxCheckedStatus($$_NS.checkboxIdentifer, $$_NS.checkboxItemIdentifer);
 	};
 	
 	/**
@@ -95,7 +95,7 @@
 		});
 	};
 	$$_NS.defaultEditMethod = function() {
-		var idsStr = $$.MVC.getCheckedValues($$_NS.checkboxItemIdentifer);
+		var idsStr = $$.MVC.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
@@ -130,13 +130,13 @@
 		eval($$_NS.viewMethod);
 	};
 	$$_NS.defaultViewMethod = function() {
-		var idsStr = $$.getCheckedValues($$_NS.checkboxItemIdentifer);
+		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
 				window.alert("只能操作一条数据");
 			} else {
-				$$.MVC.loadPageToMainFrame($$_NS.MVC.URL.view + ids[0], {});
+				$$.MVC.loadPageToMainFrame($$.MVC.URL.view + ids[0], {});
 			}
 		} else {
 			window.alert("请选择要操作的数据");
@@ -150,7 +150,7 @@
 		eval($$_NS.searchMethod);
 	};
 	$$_NS.defaultSearchMethod = function() {
-		$$.MVC.TABLE.resetTable($$.MVC.TABLE.dataTableObject, true);
+		$$.TABLE.resetTable($$.TABLE.dataTableObject, true);
 	};
 	
 	/**
@@ -187,10 +187,10 @@
 	 * 更新状态
 	 */
 	$$_NS.modifyStatus = function(status) {
-		var ids = $$.MVC.getCheckedValues($$_NS.checkboxItemIdentifer);
+		var ids = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$_NS.URL.modifyStatus, {keys : ids, status : status}, true, function(response) {
+				$$.MVC.reqAjax($$.MVC.URL.modifyStatus, {keys : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();
@@ -209,12 +209,12 @@
 		eval($$_NS.physicsDelMethod(keys));
 	};
 	$$_NS.physicsDel = function() {
-		eval($$_NS.physicsDel($$.getCheckedValues($$_NS.checkboxItemIdentifer)));
+		eval($$_NS.physicsDel($$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer)));
 	};
 	$$_NS.defaultPhysicsDelMethod = function(ids) {
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$_NS.URL.del, {keys : ids, status : status}, true, function(response) {
+				$$.MVC.reqAjax($$.MVC.URL.del, {keys : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();

@@ -8,7 +8,7 @@
 			<tr>
 				<th class="center" style="width:5%;">
 					<label>
-						<input id="$!{checkboxIdentifer}" type="checkbox" class="ace" title="全选/反选" onclick="GLOBAL_VAR.MVC.CURD.checkAll();" />
+						<input id="$!{checkboxIdentifer}" type="checkbox" class="ace" title="全选/反选" onclick="GLOBAL_VAR.MVC.CURD.switchCheckboxCheckedStatus();" />
 						<span class="lbl"></span>
 					</label>
 				</th>
