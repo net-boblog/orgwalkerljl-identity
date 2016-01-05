@@ -3,7 +3,7 @@
 <th>ID</th>
 <th>名称</th>
 <th>键</th>
-<th>值</th>
+<th>状态</th>
 <th>更新时间</th>
 <th>更新者</th>
 #parse("common/index/bottom.vm")

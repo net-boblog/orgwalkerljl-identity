@@ -21,7 +21,7 @@
                 {"mData" : "id"},
                 {"mData" : "name"},
                 {"mData" : "key"},
-                {"mData" : "value"},
+                {"mData" : "statusName"},
                 {"mData" : "modifiedTime"},
                 {"mData" : "modifier"}
 			]

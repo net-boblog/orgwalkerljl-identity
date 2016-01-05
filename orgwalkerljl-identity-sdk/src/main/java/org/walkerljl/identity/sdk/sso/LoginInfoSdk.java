@@ -12,7 +12,7 @@ import org.walkerljl.remoting.api.response.RemotingResponse;
  *
  * @author lijunlin
  */
-@RemotingService(address = "/loginInfoSdk")
+@RemotingService("/loginInfoSdk")
 public interface LoginInfoSdk {
 	
 	/**

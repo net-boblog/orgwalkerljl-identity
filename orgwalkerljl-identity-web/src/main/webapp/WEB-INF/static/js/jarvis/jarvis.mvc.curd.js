@@ -112,12 +112,12 @@
 	 * 保存
 	 */
 	$$_NS.save = function() {
-		var isValidSaveMethod = $$.MVC.isValidText($$_NS.validateSave);
+		var isValidSaveMethod = $$.isNotEmpty($$_NS.validateSave);
 		if (!isValidSaveMethod || (isValidSaveMethod && eval($$_NS.validateSave))) {
 			$$.FORM.postAjax($($$_NS.editFormName), function(response) {
 				alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 				if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
-					window.location.href = $$_NS.URL.index;
+					window.location.href = $$.MVC.URL.index;
 				}
 			});
 		}
@@ -190,7 +190,7 @@
 		var ids = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$.MVC.URL.modifyStatus, {keys : ids, status : status}, true, function(response) {
+				$$.MVC.reqAjax($$.MVC.URL.modifyStatus, {ids : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();
@@ -214,7 +214,7 @@
 	$$_NS.defaultPhysicsDelMethod = function(ids) {
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$.MVC.URL.del, {keys : ids, status : status}, true, function(response) {
+				$$.MVC.reqAjax($$.MVC.URL.del, {ids : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();

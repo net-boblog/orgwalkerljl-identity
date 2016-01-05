@@ -1,5 +1,16 @@
 ##附加属性-简单
 <tr>
+	<td>状态：</td>
+	<td colspan="3">
+		#if($!{editType} == "add" || $!{editType} == "edit") 
+		<textarea id="remark" name="remark" style="width:100%;height:50px;" class="required" 
+			maxlength="256">#if($!{editType} == "edit")$!{model.remark}#end</textarea>
+		#elseif($!{editType} == "view")
+			$!{model.statusName}
+		#end   			
+	</td>
+</tr>
+<tr>
 	<td>备注：</td>
 	<td colspan="3">
 		#if($!{editType} == "add" || $!{editType} == "edit") 
