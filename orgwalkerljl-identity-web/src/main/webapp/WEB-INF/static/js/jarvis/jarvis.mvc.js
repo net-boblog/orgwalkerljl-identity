@@ -61,7 +61,7 @@
 	$$_NS.mask = function(info) {
 		if ($("#winModal,#loadInfo").length == 0) {
 			var msg = (info != null && info.trim() != "") ? info:"系统正在为您处理数据,请稍候...";
-			$("body").append("<div id='winModal'></div><div id='loadInfo'>" + msg + "</div>");
+			$("body").append("<div id='winModal'></div><div id='loadInfo' style='text-align:center;'>" + msg + "</div>");
 		}
 	},
 	
@@ -95,7 +95,7 @@
 		$$_NS.mask();
 		jQuery.post(url, params, function(response) {
 			try {
-				$("#"+container).html(response);
+				$("#" + container).html(response);
 			} catch(e) {
 				
 			}

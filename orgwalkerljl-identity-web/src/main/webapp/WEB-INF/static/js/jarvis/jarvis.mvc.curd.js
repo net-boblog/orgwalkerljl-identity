@@ -90,12 +90,10 @@
 	 * 修改
 	 */
 	$$_NS.edit = function(key) {
-		$$.MVC.post($$.MVC.URL.edit, {id:key}, function(){
-			window.location.href = $$.MVC.URL.index;
-		});
+		eval($$_NS.editMethod);
 	};
 	$$_NS.defaultEditMethod = function() {
-		var idsStr = $$.MVC.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
+		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
@@ -115,7 +113,6 @@
 		var isValidSaveMethod = $$.isNotEmpty($$_NS.validateSave);
 		if (!isValidSaveMethod || (isValidSaveMethod && eval($$_NS.validateSave))) {
 			$$.FORM.postAjax($($$_NS.editFormName), function(response) {
-				alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 				if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 					window.location.href = $$.MVC.URL.index;
 				}

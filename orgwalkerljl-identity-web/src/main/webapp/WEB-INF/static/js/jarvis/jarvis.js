@@ -184,7 +184,7 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	 * 切换checkbox选中状态
 	 */
 	$$.switchCheckboxCheckedStatus = function(domId, checkboxName) {
-		if ($("#" + domId).attr("checked") == "checked") {
+		if ($("#" + domId).attr("checked") != "checked") {
 			$("input[name=" + checkboxName + "]").attr("checked", "checked");
 		} else {
 			$("input[name=" + checkboxName + "]").removeAttr("checked");
