@@ -53,7 +53,7 @@
 	$$.addConstructor(function() {
 		$$_NS.index = $$_NS.generateFullUrl("/");
 		$$_NS.selectPage = $$_NS.generateFullUrl("/selectPage");
-		$$_NS.selectJSONPage = $$_NS.generateFullUrl("/selectJSONPage");
+		$$_NS.selectJSONPage = $$_NS.generateFullUrl("/selectJSONPage.json");
 		$$_NS.add = $$_NS.generateFullUrl("/add");
 		$$_NS.edit = $$_NS.generateFullUrl("/edit-");
 		$$_NS.save = $$_NS.generateFullUrl("/save");

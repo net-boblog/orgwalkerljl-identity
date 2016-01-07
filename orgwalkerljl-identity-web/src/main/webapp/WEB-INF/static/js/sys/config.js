@@ -11,11 +11,10 @@
 	 * 初始化dataTable
 	 */
 	$$.addConstructor(function() {
-		$$.TABLE.dataTable($$.MVC.CURD.datatableIdentifer, {
+		$$.TABLE.dataTable({
 			fnServerParams : function(aoData) { 
 				
 			}, 
-			sAjaxSource : $$.MVC.URL.selectJSONPage,
 			aoColumns: [
 			    {"mData" : "id", mRender : function(data, type, row) {return $$.TABLE.getIdColumn(data);}},
                 {"mData" : "id"},
@@ -25,6 +24,6 @@
                 {"mData" : "modifiedTime"},
                 {"mData" : "modifier"}
 			]
-		}, $$.TABLE.dataKey);
+		});
 	});
 })(GLOBAL_NS, "sys.config");

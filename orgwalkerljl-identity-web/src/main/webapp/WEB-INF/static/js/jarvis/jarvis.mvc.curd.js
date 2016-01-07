@@ -7,19 +7,6 @@
 	var $$_NS = $$.register(NS);
 	
 	/**
-	 * dataTable对象标识符
-	 */
-	$$_NS.datatableIdentifer;
-	/**
-	 * datatable checkbox对象标识符
-	 */
-	$$_NS.checkboxIdentifer;
-	/**
-	 * datatable checkbox item对象标识符
-	 */
-	$$_NS.checkboxItemIdentifer;
-	
-	/**
 	 * 表单Form名称
 	 */
 	$$_NS.editFormName;
@@ -45,16 +32,8 @@
 	 * 初始化
 	 */
 	$$.addConstructor(function() {
-		//初始化dataTable对象
-		$$_NS.datatableIdentifer = $$.MVC.objectIdentifer + "_table";
-		$$_NS.checkboxIdentifer = $$.MVC.objectIdentifer + "_chk";
-		$$_NS.checkboxItemIdentifer = $$.MVC.objectIdentifer + "_chk_item";
-		$$_NS.editFormName = "form[name=" + $$.MVC.objectIdentifer + "EditForm]";
-		
-		$$.log("datatableIdentifer = " + datatableIdentifer);
-		$$.log("checkboxIdentifer = " + checkboxIdentifer);
-		$$.log("checkboxItemIdentifer = " + checkboxItemIdentifer);
-		$$.log("editFormName = " + editFormName);
+		$$_NS.editFormName = "form[name=" + $$.MVC.context["objectIdentifer"] + "EditForm]";
+		$$.log("editFormName = " + $$_NS.editFormName);
 		
 		//绑定按钮条事件
 		$$_NS.addMethod = "$$_NS.defaultAddMethod();";
@@ -71,7 +50,7 @@
 	 * 全选/反选
 	 */
 	$$_NS.switchCheckboxCheckedStatus = function() {
-		$$.switchCheckboxCheckedStatus($$_NS.checkboxIdentifer, $$_NS.checkboxItemIdentifer);
+		$$.switchCheckboxCheckedStatus($$.TABLE.checkboxIdentifer, $$.TABLE.checkboxItemIdentifer);
 	};
 	
 	/**

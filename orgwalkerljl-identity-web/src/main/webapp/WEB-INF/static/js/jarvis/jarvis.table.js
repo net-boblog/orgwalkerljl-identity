@@ -6,20 +6,69 @@
 (function($$, NS) {
 	var $$_NS = $$.register(NS);
 	
+	/**
+	 * dataTable对象标识符
+	 */
+	$$_NS.datatableIdentifer;
+	/**
+	 * datatable checkbox对象标识符
+	 */
+	$$_NS.checkboxIdentifer;
+	/**
+	 * datatable checkbox item对象标识符
+	 */
+	$$_NS.checkboxItemIdentifer;
+	
+	/**
+	 * 表对象
+	 */
 	$$_NS.dataTableObject;
 	$$_NS.dataKey = "data";
 	
 	/**
-	 * 使用dataTables插件展示表格数据
-	 * @param domId DOM节点ID
-	 * @param params 参数(详细查看dataTables配置)
-	 * @param datakey 要显示数据的key
+	 * 初始化
 	 */
-	$$_NS.dataTable = function(domId, params, dataKey) {
+	$$.addConstructor(function() {
+		//初始化dataTable对象
+		$$_NS.datatableIdentifer = $$.MVC.context["objectIdentifer"] + "_table";
+		$$_NS.checkboxIdentifer = $$.MVC.context["objectIdentifer"] + "_chk";
+		$$_NS.checkboxItemIdentifer = $$.MVC.context["objectIdentifer"] + "_chk_item";
+		
+		$$.log("datatableIdentifer = " + $$_NS.datatableIdentifer);
+		$$.log("checkboxIdentifer = " + $$_NS.checkboxIdentifer);
+		$$.log("checkboxItemIdentifer = " + $$_NS.checkboxItemIdentifer);
+	});
+	
+	/**
+	 * 使用dataTables插件展示表格数据
+	 * @param params 参数(详细查看dataTables配置)
+	 */
+	$$_NS.dataTable = function(params) {
 		//默认配置
 		var def_opts = {
-			fnServerData : function(sSource, aoData, fnCallback, oSettings) {
-				$$_NS.fnServerData(sSource, aoData, fnCallback, oSettings, dataKey);
+			sAjaxSource : $$.MVC.URL.selectJSONPage,
+			fnServerData : function(url, data, callback, oSettings) {
+				var def_options = {
+						contentType : "application/x-www-form-urlencoded; charset=utf-8", 
+				        cache : false, 
+				        success : function(response) {
+				        	if (response[$$.MVC.response["status"]] == false){//服务出现异常
+				        		alert(response[$$.MVC.response["message"]]);
+				        		$$.unmask();
+				        		return ;
+				        	}
+				        	if (dataKey == null) {
+				        		oSettings.sAjaxDataProp = $$.MVC.response["body"];
+				        		callback(response); 
+				        	} else {
+				        		oSettings.sAjaxDataProp = $$_NS.dataKey;
+				        		callback(response[$$.MVC.response["body"]]); 
+				        	}
+				        	$$.unmask();
+				        }
+				};
+				$$.log("url -> " + url);
+				$$.MVC.doRequest(url, data, def_options);
 			},
 			oLanguage : {
 				"sLengthMenu" : "每页显示 _MENU_ 条记录",
@@ -38,41 +87,7 @@
 			iDisplayLength : 25
 		};
 		var options = $.extend(true, {}, def_opts, params || {});
-		$$_NS.dataTableObject = $('#' + domId).dataTable(options);
-	};
-
-	/**
-	 * @param url:请求url
-	 * @param data:发送到服务器的数据
-	 * @param fnCallback 请求完成之后回调此函数将返回的数据绘制到页面上
-	 * @param oSettings dataTable设置对象
-	 * @param dataKey 返回数据Key
-	 */
-	$$_NS.fnServerData = function(url, data, fnCallback, oSettings, dataKey) {
-		alert(1);
-		var def_options = {
-				contentType : "application/x-www-form-urlencoded; charset=utf-8", 
-		        cache : false, 
-		        url : url + ".json", 
-		        data : data, 
-		        success : function(response) {
-		        	if (response[$$.MVC.response["status"]] == false){//服务出现异常
-		        		alert(response[$$.MVC.response["message"]]);
-		        		$$.unmask();
-		        		return ;
-		        	}
-		        	if (dataKey == null) {
-		        		oSettings.sAjaxDataProp = $$.MVC.response["body"];
-		        		fnCallback(response); 
-		        	} else {
-		        		oSettings.sAjaxDataProp = dataKey;
-		        		fnCallback(response[$$.MVC.response["body"]]); 
-		        	}
-		        	$$.unmask();
-		        }
-		};
-		alert(2);
-		$$.MVC.doRequest(def_options);
+		$$_NS.dataTableObject = $('#' + $$_NS.datatableIdentifer).dataTable(options);
 	};
 
 	//重新绘制表格

@@ -47,7 +47,7 @@
 	/**
 	 * 请求
 	 */
-	$$_NS.doRequest = function(options) {
+	$$_NS.doRequest = function(url, data, options) {
 		$$.mask();
 		var def_options = {
 				success : function(response) {
@@ -62,7 +62,7 @@
 					}
 				}
 			};
-		$$.doRequest($.extend(def_options, options));
+		$$.doRequest(url, data, $.extend(def_options, options));
 	};
 	
 	/**

@@ -267,7 +267,7 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	/**
 	 * 请求
 	 */
-	$$.doRequest = function(options) {
+	$$.doRequest = function(url, data, method, dataType, callback, options) {
 		$$.mask();
 		var def_options = {
 				async : true,
@@ -278,8 +278,8 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 				dataType : dataType || "json",
 				data : data,
 				timeout : 10000,
-				success : successCallback,
-				error : errorCallback || function(jqXHR, textStatus, errorThrown) {
+				success : callback,
+				error : function(jqXHR, textStatus, errorThrown) {
 					$$.unmask();
 					$$.alert($$.MESSAGE.messages["requestError"]);
 				}
