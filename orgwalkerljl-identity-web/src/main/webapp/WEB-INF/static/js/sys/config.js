@@ -27,4 +27,4 @@
 			]
 		}, $$.TABLE.dataKey);
 	});
-})(GLOBAL_VAR, "sys.config");
+})(GLOBAL_NS, "sys.config");

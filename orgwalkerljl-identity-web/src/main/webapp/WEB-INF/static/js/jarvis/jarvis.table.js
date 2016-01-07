@@ -1,5 +1,5 @@
 /**
- * JARVIS.TABLE 组件
+ * JARVIS.MVC.TABLE 组件
  * 
  * @author lijunlin
  */
@@ -8,8 +8,6 @@
 	
 	$$_NS.dataTableObject;
 	$$_NS.dataKey = "data";
-	$$_NS.sPaginationType = "bootstrap";
-	$$_NS.sDom = '<"row-fluid"<"span6"l><"span6"f>r>t<"row-fluid"<"span6"i><"span6"p>>';
 	
 	/**
 	 * 使用dataTables插件展示表格数据
@@ -33,16 +31,14 @@
 				"oPaginate" : {"sSearch": "搜索:"}
 			},
 			bProcessing : false,
-			bServerSide :true,
+			bServerSide : true,
 			bFilter : false,
 			bSort : false,
 			aLengthMenu : [25, 50, 100],
 			iDisplayLength : 25
 		};
 		var options = $.extend(true, {}, def_opts, params || {});
-		var table = $('#' + domId).dataTable(options);
-		$$_NS.dataTableObject = table;
-		return table;
+		$$_NS.dataTableObject = $('#' + domId).dataTable(options);
 	};
 
 	/**
@@ -53,39 +49,30 @@
 	 * @param dataKey 返回数据Key
 	 */
 	$$_NS.fnServerData = function(url, data, fnCallback, oSettings, dataKey) {
-		$$.MVC.mask();
-		$.ajax({ 
-	        dataType : 'json', 
-	        contentType : "application/x-www-form-urlencoded; charset=utf-8", 
-	        type : 'POST', 
-	        cache : false, 
-	        url : url+".json", 
-	        data : data, 
-	        success : function(response) {
-	        	try {
-	        		if (response[$$.MVC.RESPONSE_STATUS_KEY] == false){//服务出现异常
-		        		alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
-		        		$$.MVC.unmask();
+		alert(1);
+		var def_options = {
+				contentType : "application/x-www-form-urlencoded; charset=utf-8", 
+		        cache : false, 
+		        url : url + ".json", 
+		        data : data, 
+		        success : function(response) {
+		        	if (response[$$.MVC.response["status"]] == false){//服务出现异常
+		        		alert(response[$$.MVC.response["message"]]);
+		        		$$.unmask();
 		        		return ;
 		        	}
 		        	if (dataKey == null) {
-		        		oSettings.sAjaxDataProp = $$.MVC.RESPONSE_DATA_KEY;
+		        		oSettings.sAjaxDataProp = $$.MVC.response["body"];
 		        		fnCallback(response); 
 		        	} else {
 		        		oSettings.sAjaxDataProp = dataKey;
-		        		fnCallback(response[$$.MVC.RESPONSE_DATA_KEY]); 
+		        		fnCallback(response[$$.MVC.response["body"]]); 
 		        	}
-		        	$$.MVC.unmask();
-	        	} catch (e) {
-	        		window.alert('请求数据异常');
-	        		$$.MVC.unmask();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-	        	$$.MVC.unmask();
-				alert(jqXHR.responseText+"数据加载失败!");
-			}
-	    }); 
+		        	$$.unmask();
+		        }
+		};
+		alert(2);
+		$$.MVC.doRequest(def_options);
 	};
 
 	//重新绘制表格
@@ -100,10 +87,10 @@
 	
 	$$_NS.getIdColumn = function(data) {
 		var string = 
-				"<td style=\"width:5%;\"><label>" +
-					"<input value='"+data+"' name='"+$$.MVC.CURD.checkboxItemIdentifer +"' type='checkbox'/ class=\"ace\" style=\"text-align:center;\">" +
+				"<td class='center'><label>" +
+					"<input value='"+data+"' name='"+$$.MVC.CURD.checkboxItemIdentifer +"' type='checkbox' class='ace' />" +
 					"<span class='lbl'></span>" +
 				"</label></td>";
 		return string;
 	};
-})(GLOBAL_VAR, "TABLE");
+})(GLOBAL_NS, "TABLE");

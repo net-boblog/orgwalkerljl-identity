@@ -28,4 +28,4 @@
 			]
 		}, $$.TABLE.dataKey);
 	});
-})(GLOBAL_VAR, "sso.user");
+})(GLOBAL_NS, "sso.user");

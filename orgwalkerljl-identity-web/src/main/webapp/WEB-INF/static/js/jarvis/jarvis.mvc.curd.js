@@ -46,10 +46,15 @@
 	 */
 	$$.addConstructor(function() {
 		//初始化dataTable对象
+		$$_NS.datatableIdentifer = $$.MVC.objectIdentifer + "_table";
 		$$_NS.checkboxIdentifer = $$.MVC.objectIdentifer + "_chk";
 		$$_NS.checkboxItemIdentifer = $$.MVC.objectIdentifer + "_chk_item";
-		$$_NS.datatableIdentifer = $$.MVC.objectIdentifer + "_table";
 		$$_NS.editFormName = "form[name=" + $$.MVC.objectIdentifer + "EditForm]";
+		
+		$$.log("datatableIdentifer = " + datatableIdentifer);
+		$$.log("checkboxIdentifer = " + checkboxIdentifer);
+		$$.log("checkboxItemIdentifer = " + checkboxItemIdentifer);
+		$$.log("editFormName = " + editFormName);
 		
 		//绑定按钮条事件
 		$$_NS.addMethod = "$$_NS.defaultAddMethod();";
@@ -80,7 +85,7 @@
 	 * 新增
 	 */
 	$$_NS.add = function() {
-		eval($$_NS.addMethod);
+		$$.execute($$_NS.addMethod);
 	};
 	$$_NS.defaultAddMethod = function() {
 		$$.MVC.loadPageToMainFrame($$.MVC.URL.add, {});
@@ -90,7 +95,7 @@
 	 * 修改
 	 */
 	$$_NS.edit = function(key) {
-		eval($$_NS.editMethod);
+		$$.execute($$_NS.editMethod);
 	};
 	$$_NS.defaultEditMethod = function() {
 		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
@@ -111,8 +116,8 @@
 	 */
 	$$_NS.save = function() {
 		var isValidSaveMethod = $$.isNotEmpty($$_NS.validateSave);
-		if (!isValidSaveMethod || (isValidSaveMethod && eval($$_NS.validateSave))) {
-			$$.FORM.postAjax($($$_NS.editFormName), function(response) {
+		if (!isValidSaveMethod || (isValidSaveMethod && $$.execute($$_NS.validateSave))) {
+			$$.FORM.submit($($$_NS.editFormName), function(response) {
 				if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 					window.location.href = $$.MVC.URL.index;
 				}
@@ -124,7 +129,7 @@
 	 * 详细
 	 */
 	$$_NS.view = function() {
-		eval($$_NS.viewMethod);
+		$$.execute($$_NS.viewMethod);
 	};
 	$$_NS.defaultViewMethod = function() {
 		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
@@ -144,7 +149,7 @@
 	 * 检索
 	 */
 	$$_NS.search = function() {
-		eval($$_NS.searchMethod);
+		$$.execute($$_NS.searchMethod);
 	};
 	$$_NS.defaultSearchMethod = function() {
 		$$.TABLE.resetTable($$.TABLE.dataTableObject, true);
@@ -154,7 +159,7 @@
 	 * 启用
 	 */
 	$$_NS.enable = function() {
-		eval($$_NS.enableMethod);
+		$$.execute($$_NS.enableMethod);
 	};
 	$$_NS.defaultEnableMethod = function() {
 		$$_NS.modifyStatus($$.MVC.STATUS_ENABLED);
@@ -164,17 +169,18 @@
 	 * 停用
 	 */
 	$$_NS.disable = function() {
-		eval($$_NS.disableMethod);
+		alert($$.MVC.status["disabled"]);
+		$$.execute($$_NS.disableMethod);
 	};
 	$$_NS.defaultDisableMethod = function() {
-		$$_NS.modifyStatus($$.MVC.STATUS_DISABLED);
+		$$_NS.modifyStatus($$.MVC.status[disabled]);
 	};
 	
 	/**
 	 * 删除
 	 */
 	$$_NS.del = function() {
-		eval($$_NS.delMethod);
+		$$.execute($$_NS.delMethod);
 	};
 	$$_NS.defaultDelMethod = function() {
 		$$_NS.modifyStatus($$.MVC.STATUS_DELETED);
@@ -187,7 +193,7 @@
 		var ids = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$.MVC.URL.modifyStatus, {ids : ids, status : status}, true, function(response) {
+				$$.MVC.doRequest($$.MVC.URL.modifyStatus, {ids : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();
@@ -203,15 +209,15 @@
 	 * 物理删除
 	 */
 	$$_NS.physicsDel = function(keys) {
-		eval($$_NS.physicsDelMethod(keys));
+		$$.execute($$_NS.physicsDelMethod(keys));
 	};
 	$$_NS.physicsDel = function() {
-		eval($$_NS.physicsDel($$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer)));
+		$$.execute($$_NS.physicsDel($$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer)));
 	};
 	$$_NS.defaultPhysicsDelMethod = function(ids) {
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.reqAjax($$.MVC.URL.del, {ids : ids, status : status}, true, function(response) {
+				$$.MVC.doRequest($$.MVC.URL.del, {ids : ids, status : status}, true, function(response) {
 					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
 					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
 						$$_NS.search();
@@ -222,4 +228,4 @@
 			window.alert("请选择要操作的数据");
 		}
 	};
-})(GLOBAL_VAR, "MVC.CURD");
+})(GLOBAL_NS, "MVC.CURD");

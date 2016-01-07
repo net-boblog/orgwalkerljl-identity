@@ -67,6 +67,8 @@
 	 * 生成全路径URL
 	 */
 	$$_NS.generateFullUrl = function(methodUrl) {
-		return $$.MVC.contextPath + $$.MVC.currentUrl + methodUrl;
+		var url = $$.MVC.context["contextPath"] + $$.MVC.context["currentUrl"] + methodUrl;
+		$$.log(" generate url ->" + url);
+		return url;
 	};
-})(GLOBAL_VAR, "MVC.URL");
+})(GLOBAL_NS, "MVC.URL");

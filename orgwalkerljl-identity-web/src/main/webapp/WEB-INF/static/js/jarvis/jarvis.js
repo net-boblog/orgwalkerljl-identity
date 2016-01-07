@@ -1,5 +1,5 @@
 /**
- * JARVIS组件核心
+ * jarvis组件核心
  * 
  * @author lijunlin
  */
@@ -21,7 +21,7 @@ var registerNS = function() {
 	}
 	return ns != "" ? eval(ns) : null;
 };
-var GLOBAL_VAR = registerNS(JARVIS_NS);
+var GLOBAL_NS = registerNS(JARVIS_NS);
 
 (function($$) {
 	//JS内置函数扩展
@@ -80,7 +80,11 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	String.prototype.replaceAll = function(b, a) {
 		return this.replace(new RegExp(b,"gm"),a)
 	};
-
+	
+	/** 是否开启Debug模式*/
+	$$.isDebugEnabled = false;
+	$$.debugMessagePrefix = "JARVIS js framework : ";
+	
 	/**
 	 * 全局命名空间注册方法
 	 */
@@ -113,14 +117,18 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	 * 输出日志信息
 	 */
 	$$.log = function(info) {
+		if ($$.isDebugEnabled == true) {
+			
+		}
 		try {
 			if (info && info.stack) {
+				console.log($$.debugMessagePrefix);
 				console.log(info.stack);
 			} else {
-				console.log(info);
+				console.log($$.debugMessagePrefix + info);
 			}
 		} catch(e) {
-			//ignore
+			console.log(e);
 		}
 	};
 	
@@ -167,27 +175,27 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	};
 	
 	/**
-	 * ajax
+	 * 重定向到新的URL
 	 */
-	$$.ajax = function(type, url, data, dataType, successCallback, errorCallback) {
-		$.ajax({
-			type: type,
-			url: url,
-			data: data,
-			success: callback,
-			dataType: dataType,
-			error : errorCallback
-		});
-	};
+	$$.sendDirect = function(url) {
+		window.location.href = url;
+	}
+	
+	/**
+	 * 提示信息
+	 */
+	$$.alert = function(message) {
+		window.alert(message);
+	}
 	
 	/**
 	 * 切换checkbox选中状态
 	 */
 	$$.switchCheckboxCheckedStatus = function(domId, checkboxName) {
-		if ($("#" + domId).attr("checked") != "checked") {
-			$("input[name=" + checkboxName + "]").attr("checked", "checked");
-		} else {
+		if ($("#" + domId).attr("checked") == "checked") {
 			$("input[name=" + checkboxName + "]").removeAttr("checked");
+		} else {
+			$("input[name=" + checkboxName + "]").attr("checked", "checked");
 		}
 	};
 	
@@ -229,36 +237,63 @@ var GLOBAL_VAR = registerNS(JARVIS_NS);
 	};
 	
 	/**
-	 * 初始化页面
+	 * 开启遮罩
 	 */
-	$$.initPage = function() {
-		try {
-			//初始化执行通过span定义的函数;
-			$("SPAN.script").each(function(i,obj) {
-				eval($(obj).attr("page-load"));
-				if ($(obj).attr("firstInit") != "false") {
-					$(obj).remove();
-				}
-			});
-		} catch(e) {
-			window.alert("页面初始化失败,详细:" + e);
+	$$.mask = function(info) {
+		if ($("#winModal,#loadInfo").length == 0) {
+			var msg = (info != null && info.trim() != "") ? info : $$.alert($$.MESSAGE.messages["mask"]);;
+			$("body").append("<div id='winModal'></div><div id='loadInfo' style='text-align:center;'>" + msg + "</div>");
 		}
 	};
-})(GLOBAL_VAR);
+	
+	/**
+	 * 关闭遮罩
+	 */
+	$$.unmask = function() {
+		$("#winModal,#loadInfo").remove();
+	};	
+	
+	/**
+	 * 动态加载页面
+	 */
+	$$.loadPage = function(url, params, target) {
+		$$.mask();
+		$.post(url, params, function(html) {
+			$("#" + target).html(html);
+			$$.unmask();
+		});
+	};
+	
+	/**
+	 * 请求
+	 */
+	$$.doRequest = function(options) {
+		$$.mask();
+		var def_options = {
+				async : true,
+				cache : true,
+				contentType : null,
+				url : url, 
+				type : method || "post",
+				dataType : dataType || "json",
+				data : data,
+				timeout : 10000,
+				success : successCallback,
+				error : errorCallback || function(jqXHR, textStatus, errorThrown) {
+					$$.unmask();
+					$$.alert($$.MESSAGE.messages["requestError"]);
+				}
+			};
+		
+		$.ajax($.extend(def_options, options));
+	};
+})(GLOBAL_NS);
 
 /**
  * 初始化入口
  */
 $(document).ready(function() {
-	/**log*/
-	GLOBAL_VAR.log("local plugin is initing");
-	
-	GLOBAL_VAR.init();
-	
-	/**log*/
-	GLOBAL_VAR.log("local plugin has inited");
-	GLOBAL_VAR.log("GLOBAL_VAR.MVC.contextPath->" + GLOBAL_VAR.MVC.contextPath);
-	GLOBAL_VAR.log("GLOBAL_VAR.MVC.objectIdentifer->" + GLOBAL_VAR.MVC.objectIdentifer);
-	GLOBAL_VAR.log("GLOBAL_VAR.MVC.currentUrl->" + GLOBAL_VAR.MVC.currentUrl);
-	//GLOBAL_VAR.initPage();
+	GLOBAL_NS.isDebugEnabled = $("#isJarvisJsDebugEnabled").val();
+	console.log(GLOBAL_NS.debugMessagePrefix + "isDebugEnabled = " + GLOBAL_NS.isDebugEnabled);
+	GLOBAL_NS.init();
 });

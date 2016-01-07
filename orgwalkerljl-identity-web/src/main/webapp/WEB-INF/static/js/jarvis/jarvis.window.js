@@ -95,4 +95,4 @@
 		
 		return modal;
 	};
-})(GLOBAL_VAR, "WINDOW");
+})(GLOBAL_NS, "WINDOW");

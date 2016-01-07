@@ -55,6 +55,7 @@
 		
 		##jarvis plugin core module
 		<script src="$!{localStaticRes}/js/jarvis/jarvis.js?v=$!{v}"></script>
+		<script src="$!{localStaticRes}/js/jarvis/jarvis.message.js?v=$!{v}"></script>
 		<script src="$!{localStaticRes}/js/jarvis/jarvis.mvc.js?v=$!{v}"></script>
 	</head>
 
@@ -63,6 +64,7 @@
 		<input type="hidden" id="contextPath" value="$!{contextPath}"/>
 		<input type="hidden" id="currentUrl" value="$!{currentUrl}"/>
 		<input type="hidden" id="objectIdentifer" value="$!{objectIdentifer}"/>
+		<input type="hidden" id="isJarvisJsDebugEnabled" value="$!{isJarvisJsDebugEnabled}"/>
 		<!-- 导航条-->
 		#parse("layout/navbar.vm")
 
