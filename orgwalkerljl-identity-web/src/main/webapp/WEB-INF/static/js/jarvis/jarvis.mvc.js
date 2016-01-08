@@ -47,10 +47,10 @@
 	/**
 	 * 请求
 	 */
-	$$_NS.doRequest = function(url, data, options) {
-		$$.mask();
-		var def_options = {
-				success : function(response) {
+	$$_NS.doRequest = function(url, data, callback, options) {
+		var def_options = {};
+		$$.doRequest(url, data, "post", "json", 
+				function(response) {
 					$$.unmask();
 					if (response[$$_NS.response["body"]] == "notLogin") {
 						$$.sendDirect($$_NS.context["ssoLoginAddress"]);
@@ -60,9 +60,9 @@
 							callback(response);
 						}
 					}
-				}
-			};
-		$$.doRequest(url, data, $.extend(def_options, options));
+				},
+				$.extend(def_options, options)
+		);
 	};
 	
 	/**

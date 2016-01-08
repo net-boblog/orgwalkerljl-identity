@@ -241,7 +241,7 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	 */
 	$$.mask = function(info) {
 		if ($("#winModal,#loadInfo").length == 0) {
-			var msg = (info != null && info.trim() != "") ? info : $$.alert($$.MESSAGE.messages["mask"]);;
+			var msg = (info != null && info.trim() != "") ? info : $$.MESSAGE.messages["mask"];
 			$("body").append("<div id='winModal'></div><div id='loadInfo' style='text-align:center;'>" + msg + "</div>");
 		}
 	};
@@ -268,24 +268,30 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	 * 请求
 	 */
 	$$.doRequest = function(url, data, method, dataType, callback, options) {
-		$$.mask();
-		var def_options = {
-				async : true,
-				cache : true,
-				contentType : null,
-				url : url, 
-				type : method || "post",
-				dataType : dataType || "json",
-				data : data,
-				timeout : 10000,
-				success : callback,
-				error : function(jqXHR, textStatus, errorThrown) {
-					$$.unmask();
-					$$.alert($$.MESSAGE.messages["requestError"]);
-				}
-			};
-		
-		$.ajax($.extend(def_options, options));
+		try {
+			$$.mask();
+			var def_options = {
+					async : true,
+					cache : true,
+					contentType : null,
+					url : url, 
+					type : method || "post",
+					dataType : dataType || "json",
+					data : data,
+					timeout : 10000,
+					success : callback,
+					error : function(jqXHR, textStatus, errorThrown) {
+						$$.unmask();
+						$$.alert($$.MESSAGE.messages["requestError"]);
+					}
+				};
+			
+			$.ajax($.extend(def_options, options));
+		} catch(e) {
+			$$.log(e);
+			$$.unmask();
+			$$.alert($$.MESSAGE.messages["requestError"]);
+		}
 	};
 })(GLOBAL_NS);
 

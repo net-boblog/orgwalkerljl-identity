@@ -50,25 +50,22 @@
 			fnServerData : function(url, data, callback, oSettings) {
 				var def_options = {
 						contentType : "application/x-www-form-urlencoded; charset=utf-8", 
-				        cache : false, 
-				        success : function(response) {
+				        cache : false
+				};
+				
+				$$.MVC.doRequest(url, data, 
+						function(response) {
 				        	if (response[$$.MVC.response["status"]] == false){//服务出现异常
 				        		alert(response[$$.MVC.response["message"]]);
 				        		$$.unmask();
 				        		return ;
 				        	}
-				        	if (dataKey == null) {
-				        		oSettings.sAjaxDataProp = $$.MVC.response["body"];
-				        		callback(response); 
-				        	} else {
-				        		oSettings.sAjaxDataProp = $$_NS.dataKey;
-				        		callback(response[$$.MVC.response["body"]]); 
-				        	}
+				        	oSettings.sAjaxDataProp = $$_NS.dataKey;
+			        		callback(response[$$.MVC.response["body"]]);
 				        	$$.unmask();
-				        }
-				};
-				$$.log("url -> " + url);
-				$$.MVC.doRequest(url, data, def_options);
+				        }, 
+				        def_options
+				 );
 			},
 			oLanguage : {
 				"sLengthMenu" : "每页显示 _MENU_ 条记录",
