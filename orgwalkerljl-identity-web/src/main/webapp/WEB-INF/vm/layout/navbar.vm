@@ -226,7 +226,7 @@
 
 				<li class="light-blue">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-						<img class="nav-user-photo" src="$!{staticRes}/image/self/walkerljl.png" alt="Jason's Photo" />
+						<img class="nav-user-photo" src="$!{staticRes}/image/self/walkerljl.jpg" alt="Jason's Photo" />
 						<span class="user-info">
 							<small>欢迎您,</small>
 							$!{currentUser.userName}

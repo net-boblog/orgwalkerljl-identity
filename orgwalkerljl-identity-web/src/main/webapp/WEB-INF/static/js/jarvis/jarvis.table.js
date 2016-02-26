@@ -84,7 +84,7 @@
 			iDisplayLength : 25
 		};
 		var options = $.extend(true, {}, def_opts, params || {});
-		$$_NS.dataTableObject = $('#' + $$_NS.datatableIdentifer).dataTable(options);
+		$$_NS.dataTableObject = $("#" + $$_NS.datatableIdentifer).dataTable(options);
 	};
 
 	//重新绘制表格

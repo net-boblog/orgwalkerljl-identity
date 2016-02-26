@@ -48,20 +48,19 @@
 	 * 请求
 	 */
 	$$_NS.doRequest = function(url, data, callback, options) {
-		var def_options = {};
+		var def_options = $.extend({}, options);
 		$$.doRequest(url, data, "post", "json", 
 				function(response) {
 					$$.unmask();
 					if (response[$$_NS.response["body"]] == "notLogin") {
 						$$.sendDirect($$_NS.context["ssoLoginAddress"]);
 					} else {
-						$$.alert(response[$$_NS.response["message"]]);
 						if (typeof(callback) == "function") {
 							callback(response);
 						}
 					}
 				},
-				$.extend(def_options, options)
+				def_options
 		);
 	};
 	

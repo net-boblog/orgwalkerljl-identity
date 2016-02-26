@@ -36,14 +36,15 @@
 		$$.log("editFormName = " + $$_NS.editFormName);
 		
 		//绑定按钮条事件
-		$$_NS.addMethod = "$$_NS.defaultAddMethod();";
-		$$_NS.editMethod = "$$_NS.defaultEditMethod();";
-		$$_NS.viewMethod = "$$_NS.defaultViewMethod();";
-		$$_NS.searchMethod = "$$_NS.defaultSearchMethod();";
-		$$_NS.enableMethod = "$$_NS.defaultEnableMethod();";
-		$$_NS.disableMethod = "$$_NS.defaultDisableMethod();";
-		$$_NS.delMethod = "$$_NS.defaultDelMethod();";
-		$$_NS.physicsDelMethod = "$$_NS.defaultPhysicsDelMethod();";
+		var methodPrefix = $$.NS_NAME + "." + NS;
+		$$_NS.addMethod = methodPrefix + ".defaultAddMethod();";
+		$$_NS.editMethod = methodPrefix + ".defaultEditMethod();";
+		$$_NS.viewMethod = methodPrefix + ".defaultViewMethod();";
+		$$_NS.searchMethod = methodPrefix + ".defaultSearchMethod();";
+		$$_NS.enableMethod = methodPrefix + ".defaultEnableMethod();";
+		$$_NS.disableMethod = methodPrefix + ".defaultDisableMethod();";
+		$$_NS.delMethod = methodPrefix + ".defaultDelMethod();";
+		$$_NS.physicsDelMethod = methodPrefix + ".defaultPhysicsDelMethod();";
 	});
 	
 	/**

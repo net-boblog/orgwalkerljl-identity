@@ -84,6 +84,7 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	/** 是否开启Debug模式*/
 	$$.isDebugEnabled = false;
 	$$.debugMessagePrefix = "JARVIS js framework : ";
+	$$.NS_NAME = "JARVIS";
 	
 	/**
 	 * 全局命名空间注册方法

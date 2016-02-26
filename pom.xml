@@ -13,7 +13,6 @@
 		<module>orgwalkerljl-identity-sdk</module>
 		<module>orgwalkerljl-identity-rpc</module>
 		<module>orgwalkerljl-identity-service</module>
-		<module>orgwalkerljl-identity-openservice</module>
 		<module>orgwalkerljl-identity-web</module>
 	</modules>
 

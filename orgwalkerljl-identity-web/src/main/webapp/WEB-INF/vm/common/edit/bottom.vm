@@ -9,9 +9,9 @@
 	#end
 </div>
 ##scripts
-<script src="$!{staticRes}/js/jquery/validate/jquery.metadata.js?v=$!{v}"></script>
-<script src="$!{staticRes}/js/jquery/validate/jquery.validate.min.js?v=$!{v}"></script>
-<script src="$!{staticRes}/js/jquery/validate/messages_cn.js?v=$!{v}"></script>
+<script src="$!{staticRes}/plugin/jquery/validate/jquery.metadata.js?v=$!{v}"></script>
+<script src="$!{staticRes}/plugin/jquery/validate/jquery.validate.min.js?v=$!{v}"></script>
+<script src="$!{staticRes}/plugin/jquery/validate/messages_cn.js?v=$!{v}"></script>
 <script src="$!{localStaticRes}/js/jarvis/jarvis.mvc.url.js?v=$!{v}"></script>
 <script src="$!{localStaticRes}/js/jarvis/jarvis.mvc.curd.js?v=$!{v}"></script>
 <script src="$!{localStaticRes}/js/jarvis/jarvis.form.js?v=$!{v}"></script>

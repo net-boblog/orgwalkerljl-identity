@@ -21,7 +21,7 @@
 	<!-- 注解扫描包 -->
 	<context:component-scan base-package="org.walkerljl.identity.web" />
 	
-	<!-- 国际化定义&基于cookie&拦截器 -->
+	<!-- 国际化定义&基于cookie&拦截器
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
 		<property name="basenames">
 			<list>
@@ -29,11 +29,13 @@
 				<value>i18n/message</value>
 			</list>
 		</property>
-		<!-- 缓存时间（单位：秒） -->
+		 -->
+		<!-- 缓存时间（单位：秒）
 		<property name="cacheSeconds" value="864000"/>
 		<property name="defaultEncoding" value="${global.encoding}"/>
 		<property name="useCodeAsDefaultMessage" value="true"/>
 	</bean> 
+	 -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 <!-- 		<property name="cookieName" value="locale"/> -->
 		<property name="defaultLocale" value="zh"/>
@@ -45,11 +47,11 @@
 	<mvc:annotation-driven/>
 	<mvc:interceptors>
 		<bean class="org.walkerljl.smart.mvc.interceptor.DefaultAppInterceptor"/>
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+		<!--<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>-->
 	</mvc:interceptors>
 	
 	<!-- 权限校验器 -->
-	<bean id="authenticator" class="org.walkerljl.commons.auth.DefaultAuthenticator"/>
+	<bean id="authenticator" class="org.walkerljl.commons.auth.impl.DefaultAuthenticator"/>
 	<!-- MVC Supporter -->
 	<bean id="mvcSupporter" class="org.walkerljl.identity.web.CustomizedMvcSupporter"/>
 	

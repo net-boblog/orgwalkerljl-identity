@@ -26,6 +26,7 @@ public class SysConfigController extends JqueryDatatableCurdTemplate<SysConfig> 
 	
 	public SysConfigController() {
 		setPageTitle("系统配置管理");
+		setObjectIdentifer("sysConfig");
 		setTemplateBasePath("/sys/config");
 		setParentMenus(new Menu("系统设置", null));
 	}
