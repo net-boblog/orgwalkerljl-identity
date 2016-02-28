@@ -5,7 +5,7 @@
 <div class="textC m10" style="text-align:center;">
 	<a href="$!{contextPath}$!{currentUrl}/" class="btn btn-primary btn-large icon-circle-arrow-left" id="back">返回列表</a>
 	#if ($!{editType} == "add" || $!{editType} == "edit") 
-		<a href="javascript:void(0);" onclick="GLOBAL_VAR.MVC.CURD.save();" class="btn btn-primary btn-large icon-save">保存</a>
+		<a href="javascript:void(0);" onclick="JARVIS.MVC.CURD.save();" class="btn btn-primary btn-large icon-save">保存</a>
 	#end
 </div>
 ##scripts

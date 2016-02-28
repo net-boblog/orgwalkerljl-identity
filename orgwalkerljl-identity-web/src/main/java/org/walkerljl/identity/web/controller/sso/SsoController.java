@@ -15,10 +15,10 @@ import org.walkerljl.commons.util.StringUtils;
 import org.walkerljl.identity.domain.sso.User;
 import org.walkerljl.identity.enums.sso.AgentType;
 import org.walkerljl.identity.pojo.sso.LoginCommand;
+import org.walkerljl.identity.sdk.sso.UserAuthenticationTicketFactory;
 import org.walkerljl.identity.service.sso.UserService;
 import org.walkerljl.smart.domain.ViewResult;
 import org.walkerljl.smart.mvc.BaseController;
-import org.walkerljl.sso.sdk.UserAuthenticationTicketFactory;
 
 /**
  * SsoController 
