@@ -57,6 +57,8 @@
 					} else {
 						if (typeof(callback) == "function") {
 							callback(response);
+						} else {
+							alert(response[$$_NS.response["message"]]);
 						}
 					}
 				},

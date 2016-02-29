@@ -57,7 +57,7 @@
 		$$_NS.add = $$_NS.generateFullUrl("/add");
 		$$_NS.edit = $$_NS.generateFullUrl("/edit-");
 		$$_NS.save = $$_NS.generateFullUrl("/save");
-		$$_NS.modifyStatus = $$_NS.generateFullUrl("/modifyStatus");
+		$$_NS.modifyStatus = $$_NS.generateFullUrl("/modifyStatus.json");
 		$$_NS.del = $$_NS.generateFullUrl("/delete");
 		$$_NS.view = $$_NS.generateFullUrl("/view-");
 		$$_NS.search = $$_NS.generateFullUrl("/search");

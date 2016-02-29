@@ -82,12 +82,12 @@
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
-				window.alert("只能操作一条数据");
+				window.alert($$.MESSAGE.messages["choiceOnly"]);
 			} else {
 				$$.MVC.loadPageToMainFrame($$.MVC.URL.edit + ids[0], {});
 			}
 		} else {
-			window.alert("请选择要操作的数据");
+			window.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 
@@ -116,12 +116,12 @@
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
-				window.alert("只能操作一条数据");
+				window.alert($$.MESSAGE.messages["choiceOnly"]);
 			} else {
 				$$.MVC.loadPageToMainFrame($$.MVC.URL.view + ids[0], {});
 			}
 		} else {
-			window.alert("请选择要操作的数据");
+			window.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 	
@@ -142,18 +142,17 @@
 		$$.execute($$_NS.enableMethod);
 	};
 	$$_NS.defaultEnableMethod = function() {
-		$$_NS.modifyStatus($$.MVC.STATUS_ENABLED);
+		$$_NS.modifyStatus($$.MVC.status["enabled"]);
 	};
 	
 	/**
 	 * 停用
 	 */
 	$$_NS.disable = function() {
-		alert($$.MVC.status["disabled"]);
 		$$.execute($$_NS.disableMethod);
 	};
 	$$_NS.defaultDisableMethod = function() {
-		$$_NS.modifyStatus($$.MVC.status[disabled]);
+		$$_NS.modifyStatus($$.MVC.status["disabled"]);
 	};
 	
 	/**
@@ -163,7 +162,7 @@
 		$$.execute($$_NS.delMethod);
 	};
 	$$_NS.defaultDelMethod = function() {
-		$$_NS.modifyStatus($$.MVC.STATUS_DELETED);
+		$$_NS.modifyStatus($$.MVC.status["deleted"]);
 	};
 	
 	/**
@@ -172,16 +171,17 @@
 	$$_NS.modifyStatus = function(status) {
 		var ids = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
 		if (ids != "") {
-			if (confirm("确认要执行此操作吗?")) {
-				$$.MVC.doRequest($$.MVC.URL.modifyStatus, {ids : ids, status : status}, true, function(response) {
-					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
-					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
+			if (confirm($$.MESSAGE.messages["confirm"])) {
+				var params = {"ids" : ids, "status" : status};
+				$$.MVC.doRequest($$.MVC.URL.modifyStatus, params, true, function(response) {
+					alert(response[$$.MVC.response["message"]]);
+					if (response[$$.MVC.response["status"]]) {
 						$$_NS.search();
 					}
 				});
 			}
 		} else {
-			window.alert("请选择要操作的数据");
+			window.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 	
@@ -196,16 +196,16 @@
 	};
 	$$_NS.defaultPhysicsDelMethod = function(ids) {
 		if (ids != "") {
-			if (confirm("确认要执行此操作吗?")) {
+			if (confirm(confirm($$.MESSAGE.messages["confirm"]))) {
 				$$.MVC.doRequest($$.MVC.URL.del, {ids : ids, status : status}, true, function(response) {
-					alert(response[$$.MVC.RESPONSE_MESSAGE_KEY]);
-					if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
+					alert(response[$$.MVC.response["message"]]);
+					if (response[$$.MVC.response["status"]]) {
 						$$_NS.search();
 					}
 				});
 			}
 		} else {
-			window.alert("请选择要操作的数据");
+			window.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 })(GLOBAL_NS, "MVC.CURD");

@@ -68,13 +68,13 @@
 				 );
 			},
 			oLanguage : {
-				"sLengthMenu" : "每页显示 _MENU_ 条记录",
-				"sLengthMenu" : "每页显示 _MENU_ 条记录",
-				"sZeroRecords" : "抱歉， 没有找到要查询的数据！",
-				"sInfo" : "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-				"sInfoEmpty" : "没有数据",
-				"sInfoFiltered" : "(从 _MAX_ 条数据中检索)",
-				"oPaginate" : {"sSearch": "搜索:"}
+				"sLengthMenu" : $$.MESSAGE.datatable["sLengthMenu"],
+				"sLengthMenu" : $$.MESSAGE.datatable["sLengthMenu"],
+				"sZeroRecords" : $$.MESSAGE.datatable["sZeroRecords"],
+				"sInfo" : $$.MESSAGE.datatable["sInfo"],
+				"sInfoEmpty" : $$.MESSAGE.datatable["sInfoEmpty"],
+				"sInfoFiltered" : $$.MESSAGE.datatable["sInfoFiltered"],
+				"oPaginate" : $$.MESSAGE.datatable["oPaginate"]
 			},
 			bProcessing : false,
 			bServerSide : true,
