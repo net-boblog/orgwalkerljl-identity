@@ -11,21 +11,22 @@
 	 * 初始化dataTable
 	 */
 	$$.addConstructor(function() {
-		$$.TABLE.dataTable($$.MVC.CURD.datatableIdentifer, {
+		$$.TABLE.dataTable({
 			fnServerParams : function(aoData) { 
-				
+				$$.TABLE.pushQueryCondition(aoData, "userId", "s_userId");
+				$$.TABLE.pushQueryCondition(aoData, "userName", "s_userName");
+				$$.TABLE.pushQueryCondition(aoData, "loginIp", "s_loginIp");
 			}, 
-			sAjaxSource : $$.MVC.URL.selectJSONPage,
 			aoColumns: [
-			    {"mData" : "id", mRender : function(data, type, row) {return $$.TABLE.getIdColumn(data);}},
-                {"mData" : "id"},
-                {"mData" : "userId"},
-                {"mData" : "userName"},
-                {"mData" : "loginIp"},
-                {"mData" : "loginAgentName"},
-                {"mData" : "loginTime"},
-                {"mData" : "logoutTime"}
+			        {"mData" : "id", mRender : function(data, type, row) {return $$.TABLE.getIdColumn(data);}},
+		            {"mData" : "id"},
+		            {"mData" : "userId"},
+		            {"mData" : "userName"},
+		            {"mData" : "loginIp"},
+		            {"mData" : "loginAgentName"},
+		            {"mData" : "loginTime"},
+		            {"mData" : "logoutTime"}
 			]
-		}, $$.TABLE.dataKey);
+		});	
 	});
 })(GLOBAL_NS, "sso.loginInfo");

@@ -87,7 +87,9 @@
 		$$_NS.dataTableObject = $("#" + $$_NS.datatableIdentifer).dataTable(options);
 	};
 
-	//重新绘制表格
+	/**
+	 * 重新绘制表格
+	 */
 	$$_NS.resetTable = function(oTable, flag) {
 		if (flag) {
 			var oSettings = oTable.fnSettings();
@@ -97,12 +99,21 @@
 	    oTable.fnDraw();
 	};
 	
+	/**
+	 * 获取ID字段
+	 */
 	$$_NS.getIdColumn = function(data) {
-		var string = 
-				"<td class='center'><label>" +
-					"<input value='"+data+"' name='"+$$.MVC.CURD.checkboxItemIdentifer +"' type='checkbox' class='ace' />" +
-					"<span class='lbl'></span>" +
-				"</label></td>";
+		var string = "<label><input value='"+data+"' name='"+$$_NS.checkboxItemIdentifer +"' type='checkbox' class='ace' />" +
+					"<span class='lbl'></span></label>";
 		return string;
+	};
+	
+	/**
+	 * 添加查询条件
+	 */
+	$$_NS.pushQueryCondition = function(aoData, column, sColumn) {
+		if ($$.isNotEmpty($("#" + sColumn).val())) {
+			aoData.push({"name": column, "value" : $("#" + sColumn).val()});	
+		}
 	};
 })(GLOBAL_NS, "TABLE");

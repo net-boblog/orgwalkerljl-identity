@@ -1,4 +1,4 @@
-<form name="$!{editForm}" action="$!{contextPath}$!{currentUrl}/save" method="POST" data-type="json">
+<form name="$!{editForm}" action="$!{contextPath}$!{currentUrl}/save.json" method="POST" data-type="json">
 #if ($!{editType} == "edit") 
 	<input type="hidden" id="id" name="id" value="$!{model.id}"/>
 #end

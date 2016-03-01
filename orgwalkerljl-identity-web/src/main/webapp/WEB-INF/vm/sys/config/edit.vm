@@ -14,8 +14,9 @@
 	<td>配置键：</td>
 	<td colspan="3">
 		#if($!{editType} == "add" || $!{editType} == "edit") 
-			<textarea id="key" name="key" style="width:100%;height:50px;" class="required" maxlength="128">#if($!{editType} == "edit")$!{model.key}#end</textarea>
-		#elseif($!{editType} == "view")
+			<textarea id="key" name="key" style="width:100%;height:50px;" class="required" 
+				maxlength="128" #if($!{editType} == "edit") disabled="true" #end>#if($!{editType} == "edit")$!{model.key}#end</textarea>
+		#else
 			$!{model.key}
 		#end   			
 	</td>
@@ -24,8 +25,8 @@
 	<td>配置值：</td>
 	<td colspan="3">
 		#if($!{editType} == "add" || $!{editType} == "edit") 
-		<textarea id="value" name="value" style="width:100%;height:50px;" class="required" maxlength="1024">#if($!{editType} == "edit")$!{model.value}#end</textarea>
-		#elseif($!{editType} == "view")
+			<textarea id="value" name="value" style="width:100%;height:50px;" class="required" maxlength="1024">#if($!{editType} == "edit")$!{model.value}#end</textarea>
+		#else
 			$!{model.value}
 		#end   			
 	</td>
@@ -33,3 +34,6 @@
 #parse("common/edit/append-fields.vm")
 	
 #parse("common/edit/bottom.vm")
+
+<input type="hidden" id="oldKey" name="oldKey" value="$!{model.key}" />
+<input type="hidden" id="oldName" name="oldName" value="$!{model.name}" />

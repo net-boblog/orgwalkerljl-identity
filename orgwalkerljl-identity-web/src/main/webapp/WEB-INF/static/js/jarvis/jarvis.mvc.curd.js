@@ -78,16 +78,16 @@
 		$$.execute($$_NS.editMethod);
 	};
 	$$_NS.defaultEditMethod = function() {
-		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
+		var idsStr = $$.getCheckedCheckboxValues($$.TABLE.checkboxItemIdentifer);
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
-				window.alert($$.MESSAGE.messages["choiceOnly"]);
+				$$.alert($$.MESSAGE.messages["choiceOnly"]);
 			} else {
 				$$.MVC.loadPageToMainFrame($$.MVC.URL.edit + ids[0], {});
 			}
 		} else {
-			window.alert($$.MESSAGE.messages["choice"]);
+			$$.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 
@@ -98,8 +98,9 @@
 		var isValidSaveMethod = $$.isNotEmpty($$_NS.validateSave);
 		if (!isValidSaveMethod || (isValidSaveMethod && $$.execute($$_NS.validateSave))) {
 			$$.FORM.submit($($$_NS.editFormName), function(response) {
-				if (response[$$.MVC.RESPONSE_STATUS_KEY]) {
-					window.location.href = $$.MVC.URL.index;
+				if (response[$$.MVC.response["status"]]) {
+					$$.alert($$.MESSAGE.messages["requestSuccess"]);
+					$$.sendDirect($$.MVC.URL.index);
 				}
 			});
 		}
@@ -112,16 +113,16 @@
 		$$.execute($$_NS.viewMethod);
 	};
 	$$_NS.defaultViewMethod = function() {
-		var idsStr = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
+		var idsStr = $$.getCheckedCheckboxValues($$.TABLE.checkboxItemIdentifer);
 		if (idsStr != "") {
 			var ids = idsStr.split(",");
 			if (ids.length > 1) {
-				window.alert($$.MESSAGE.messages["choiceOnly"]);
+				$$.alert($$.MESSAGE.messages["choiceOnly"]);
 			} else {
 				$$.MVC.loadPageToMainFrame($$.MVC.URL.view + ids[0], {});
 			}
 		} else {
-			window.alert($$.MESSAGE.messages["choice"]);
+			$$.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 	
@@ -169,19 +170,19 @@
 	 * 更新状态
 	 */
 	$$_NS.modifyStatus = function(status) {
-		var ids = $$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer);
+		var ids = $$.getCheckedCheckboxValues($$.TABLE.checkboxItemIdentifer);
 		if (ids != "") {
 			if (confirm($$.MESSAGE.messages["confirm"])) {
 				var params = {"ids" : ids, "status" : status};
-				$$.MVC.doRequest($$.MVC.URL.modifyStatus, params, true, function(response) {
-					alert(response[$$.MVC.response["message"]]);
+				$$.MVC.doRequest($$.MVC.URL.modifyStatus, params, function(response) {
+					$$.alert(response[$$.MVC.response["message"]]);
 					if (response[$$.MVC.response["status"]]) {
 						$$_NS.search();
 					}
 				});
 			}
 		} else {
-			window.alert($$.MESSAGE.messages["choice"]);
+			$$.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 	
@@ -192,20 +193,20 @@
 		$$.execute($$_NS.physicsDelMethod(keys));
 	};
 	$$_NS.physicsDel = function() {
-		$$.execute($$_NS.physicsDel($$.getCheckedCheckboxValues($$_NS.checkboxItemIdentifer)));
+		$$.execute($$_NS.physicsDel($$.getCheckedCheckboxValues($$.TABLE.checkboxItemIdentifer)));
 	};
 	$$_NS.defaultPhysicsDelMethod = function(ids) {
 		if (ids != "") {
 			if (confirm(confirm($$.MESSAGE.messages["confirm"]))) {
 				$$.MVC.doRequest($$.MVC.URL.del, {ids : ids, status : status}, true, function(response) {
-					alert(response[$$.MVC.response["message"]]);
+					$$.alert(response[$$.MVC.response["message"]]);
 					if (response[$$.MVC.response["status"]]) {
 						$$_NS.search();
 					}
 				});
 			}
 		} else {
-			window.alert($$.MESSAGE.messages["choice"]);
+			$$.alert($$.MESSAGE.messages["choice"]);
 		}
 	};
 })(GLOBAL_NS, "MVC.CURD");

@@ -47,6 +47,34 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	};
 	
 	/**
+	 * 判断字符串为NULL或者为空
+	 */
+	String.prototype.isEmpty = function(str) {
+		return str == null || str == "undefined" || (typeof(str) == "string" && str.trim() == "");
+	};
+	
+	/**
+	 * 判断字符串不为NULL和空
+	 */
+	String.prototype.isNotEmpty = function(str) {
+		return !isEmpty(str);
+	};
+	
+	/**
+	 * 判断字符串相等
+	 */
+	String.prototype.equals = function(str1, str2) {
+		if (str1.isEmpty() && str2.isEmpty()) {
+			return true;
+		} else if ((str1.isEmpty() && str2.isNotEmpty()) || (str1.isNotEmpty() && str2.isEmpty())) {
+			return false;
+		}
+		str1 = str1.trim();
+		str2 = str2.trim();
+		return str1 == str2;
+	};
+	
+	/**
 	 * 判断字符串是否以自定字符串结束
 	 */
 	String.prototype.endWith = function(s) {
@@ -115,6 +143,27 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	};
 	
 	/**
+	 * 判断字符串相等
+	 */
+	$$.equals = function(str1, str2) {
+		if ($$.isEmpty(str1) && $$.isEmpty(str2)) {
+			return true;
+		} else if (($$.isEmpty(str1) && $$.isNotEmpty(str2)) || ($$.isNotEmpty(str1) && $$.isEmpty(str2))) {
+			return false;
+		}
+//		str1 = str1.trim();
+//		str2 = str2.trim();
+		return str1 == str2;
+	};
+	
+	/**
+	 * 判断字符串不相等
+	 */
+	$$.notEquals = function(str1, str2) {
+		return !$$.equals(str1, str2);
+	}
+	
+	/**
 	 * 输出日志信息
 	 */
 	$$.log = function(info) {
@@ -139,9 +188,9 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	$$.execute = function(func) {
 		try {
 			if (typeof(func) == "function") {
-				eval("func();");
+				return eval("func();");
 			} else {
-				eval(func);
+				return eval(func);
 			}
 		} catch(e) {
 			$$.log(e);
@@ -193,10 +242,17 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	 * 切换checkbox选中状态
 	 */
 	$$.switchCheckboxCheckedStatus = function(domId, checkboxName) {
-		if ($("#" + domId).attr("checked") == "checked") {
-			$("input[name=" + checkboxName + "]").removeAttr("checked");
+		//$$.log("domId=" + domId + ", checkboxName=" + checkboxName);
+		if ($("#" + domId).attr("checked")) {
+			$("input[name=" + checkboxName + "]").each(function(){
+				$(this).attr("checked", false);
+			});
+			$("#" + domId).attr("checked", false);
 		} else {
-			$("input[name=" + checkboxName + "]").attr("checked", "checked");
+			$("input[name=" + checkboxName + "]").each(function(){
+				$(this).attr("checked", true);
+			});
+			$("#" + domId).attr("checked", true);
 		}
 	};
 	
@@ -274,7 +330,7 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 			var def_options = {
 					async : true,
 					cache : true,
-					contentType : null,
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
 					url : url, 
 					type : method || "post",
 					dataType : dataType || "json",

@@ -14,7 +14,8 @@
 			"requestError" : "操作失败",
 			"confirm" : "确认要如此操作吗",
 			"choice" : "请选择要操作的数据",
-			"choiceOnly" : "只能操作一条数据"
+			"choiceOnly" : "只能操作一条数据",
+			"isExists" : "数据已存在"
 	};
 	
 	$$_NS.datatable = {

@@ -28,6 +28,8 @@ public class UserController extends JqueryDatatableCurdTemplate<User> {
 		setPageTitle("用户信息");
 		setTemplateBasePath("/sso/user");
 		setParentMenus(new Menu("单点登录", null));
+		//禁用按钮
+		setButtonActives(new Integer[]{0,0,1,1,1,1,1});
 	}
 
 	@Override

@@ -6,7 +6,7 @@
 	<table id="$!{datatableIdentifer}" class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-				<th class="center" style="width:5%;">
+				<th style="width:5%;">
 					<label>
 						<input id="$!{checkboxIdentifer}" type="checkbox" class="ace" title="全选/反选" onclick="JARVIS.MVC.CURD.switchCheckboxCheckedStatus();" />
 						<span class="lbl"></span>

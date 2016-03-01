@@ -29,7 +29,7 @@ public class LoginInfoController extends JqueryDatatableCurdTemplate<LoginInfo> 
 		setTemplateBasePath("/sso/loginInfo");
 		setParentMenus(new Menu("单点登录", null));
 		//禁用按钮
-		setButtonActives(new Integer[]{0,0,0,0,0,0,0});
+		setButtonActives(new Integer[]{0,0,0,1,0,0,0});
 	}
 
 	@Override

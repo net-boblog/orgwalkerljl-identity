@@ -12,13 +12,13 @@
 	$$_NS.submit = function(formObj, callback) {
 		$(formObj).validate({
 	        submitHandler : function(form) {
+	        	var url = $(form).attr("action");
+				var data = $(form).serialize();
 	        	var opts = {
-	    				url : $(form).attr("action"),
 	    				type : $(form).attr("method"),
-	    				data : $(form).serialize(),
 	    				dataType : "json"
 	    			};
-	    		$$.MVC.doRequest(opts);
+	    		$$.MVC.doRequest(url, data, callback, opts);
 	        }    
 	    });
 		$(formObj).submit();

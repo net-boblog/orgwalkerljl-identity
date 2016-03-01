@@ -24,7 +24,7 @@
 	 */
 	$$_NS.response = {
 			status : "status", //状态码
-			message: "message", //消息
+			message: "msg", //消息
 			body : "body" //响应主体(响应数据)
 	};
 	
@@ -58,7 +58,7 @@
 						if (typeof(callback) == "function") {
 							callback(response);
 						} else {
-							alert(response[$$_NS.response["message"]]);
+							$$.alert(response[$$_NS.response["message"]]);
 						}
 					}
 				},

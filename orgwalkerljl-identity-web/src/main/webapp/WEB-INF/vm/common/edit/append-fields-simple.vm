@@ -10,7 +10,7 @@
 				>$!{statusOption.name}</option>
 			#end
 		</select>
-		#elseif($!{editType} == "view")
+		#else
 			$!{model.statusName}
 		#end   			
 	</td>
@@ -20,7 +20,7 @@
 	<td colspan="3">
 		#if($!{editType} == "add" || $!{editType} == "edit") 
 			<textarea id="remark" name="remark" style="width:100%;height:50px;" maxlength="256">#if($!{editType} == "edit")$!{model.remark}#end</textarea>
-		#elseif($!{editType} == "view")
+		#else
 			$!{model.remark}
 		#end   			
 	</td>
