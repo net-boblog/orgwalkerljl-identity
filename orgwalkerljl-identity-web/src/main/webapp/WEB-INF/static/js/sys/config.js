@@ -10,16 +10,14 @@
 	$$.MVC.CURD.validateSave = function() {
 		var result = true;
 		//判断Key是否存在
-		if ($$.notEquals(oldKey, key)) {
-			if ($$.notEquals($("#oldKey").val(), $("#key").val())) {
-				$$.MVC.doRequest($$.MVC.URL.isExists, {key : $("#key").val()}, function(response) {
-					var isExists = response[$$.MVC.response["body"]]["isExists"];
-					if (isExists) {
-						result = false;
-						$$.alert("key" + $$.MESSAGE.messages["isExists"]);
-					} 
-				}, {async : false});
-			}
+		if ($$.notEquals($("#oldKey").val(), $("#key").val())) {
+			$$.MVC.doRequest($$.MVC.URL.isExists, {key : $("#key").val()}, function(response) {
+				var isExists = response[$$.MVC.response["body"]]["isExists"];
+				if (isExists) {
+					result = false;
+					$$.alert("key" + $$.MESSAGE.messages["isExists"]);
+				} 
+			}, {async : false});
 		}
 		//判断name是否存在
 		if (result) {

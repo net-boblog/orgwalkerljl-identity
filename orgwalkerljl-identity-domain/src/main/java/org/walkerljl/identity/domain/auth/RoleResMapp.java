@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
+ * The software source code all copyright belongs to the author, 
+ * without permission shall not be any reproduction and transmission.
+ */
+package org.walkerljl.identity.domain.auth;
+
+import java.util.Date;
+
+/**
+ * RoleResMapping
+ * @author lijunlin<walkerljl@qq.com>
+ */
+public class RoleResMapp extends BaseAuth {
+
+	private static final long serialVersionUID = 1L;
+
+	/** 角色Id*/
+	private Long roleId;
+	/** 资源码Id*/
+	private Long resCodeId;
+	/** 授权生效开始时期*/
+	private Date startDate;
+	/** 授权生效结束时期*/
+	private Date endDate;
+	
+	//扩展属性
+	/** 是否使用授权生效周期, 0:未使用,1:使用*/
+	private Integer useEffCycle;
+
+	public RoleResMapp() {}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public Long getResCodeId() {
+		return resCodeId;
+	}
+
+	public void setResCodeId(Long resCodeId) {
+		this.resCodeId = resCodeId;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getUseEffCycle() {
+		return useEffCycle;
+	}
+
+	public void setUseEffCycle(Integer useEffCycle) {
+		this.useEffCycle = useEffCycle;
+	}
+}

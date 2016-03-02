@@ -32,7 +32,7 @@
 	 * 初始化
 	 */
 	$$.addConstructor(function() {
-		$$_NS.editFormName = "form[name=" + $$.MVC.context["objectIdentifer"] + "EditForm]";
+		$$_NS.editFormName = "form[name='" + $$.MVC.context["objectIdentifer"] + "EditForm']";
 		$$.log("editFormName = " + $$_NS.editFormName);
 		
 		//绑定按钮条事件

@@ -242,17 +242,14 @@ var GLOBAL_NS = registerNS(JARVIS_NS);
 	 * 切换checkbox选中状态
 	 */
 	$$.switchCheckboxCheckedStatus = function(domId, checkboxName) {
-		//$$.log("domId=" + domId + ", checkboxName=" + checkboxName);
-		if ($("#" + domId).attr("checked")) {
-			$("input[name=" + checkboxName + "]").each(function(){
-				$(this).attr("checked", false);
-			});
-			$("#" + domId).attr("checked", false);
+		if ($("#" + domId).attr("checked") == "checked") {
+			$("input[name=" + checkboxName + "]:checkbox").removeAttr("checked");
+			$("#" + domId).removeAttr("checked");
+			alert("uncheck");
 		} else {
-			$("input[name=" + checkboxName + "]").each(function(){
-				$(this).attr("checked", true);
-			});
-			$("#" + domId).attr("checked", true);
+			$("input[name=" + checkboxName + "]:checkbox").attr("checked", "checked");
+			$("#" + domId).attr("checked", "checked");
+			alert("check");
 		}
 	};
 	

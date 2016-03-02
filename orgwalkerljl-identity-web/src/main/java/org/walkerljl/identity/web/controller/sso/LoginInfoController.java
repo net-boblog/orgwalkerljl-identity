@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.walkerljl.commons.auth.AuthType;
 import org.walkerljl.commons.auth.Authentication;
+import org.walkerljl.commons.auth.Menu;
 import org.walkerljl.identity.domain.sso.LoginInfo;
 import org.walkerljl.identity.service.sso.LoginInfoService;
-import org.walkerljl.smart.domain.sys.Menu;
 import org.walkerljl.smart.mvc.template.JqueryDatatableCurdTemplate;
 import org.walkerljl.smart.service.JqueryDatatableBaseService;
 

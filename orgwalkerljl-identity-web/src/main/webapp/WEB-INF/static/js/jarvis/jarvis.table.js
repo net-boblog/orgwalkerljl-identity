@@ -44,6 +44,16 @@
 	 * @param params 参数(详细查看dataTables配置)
 	 */
 	$$_NS.dataTable = function(params) {
+		//checkbox全选反选功能
+		$('table th input:checkbox').on('click' , function(){
+			var that = this;
+			$(this).closest('table').find('tr > td:first-child input:checkbox')
+			.each(function(){
+				this.checked = that.checked;
+				$(this).closest('tr').toggleClass('selected');
+			});
+		});
+		
 		//默认配置
 		var def_opts = {
 			sAjaxSource : $$.MVC.URL.selectJSONPage,

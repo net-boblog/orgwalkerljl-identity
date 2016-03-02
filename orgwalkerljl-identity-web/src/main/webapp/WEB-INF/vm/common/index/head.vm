@@ -8,7 +8,7 @@
 			<tr>
 				<th style="width:5%;">
 					<label>
-						<input id="$!{checkboxIdentifer}" type="checkbox" class="ace" title="全选/反选" onclick="JARVIS.MVC.CURD.switchCheckboxCheckedStatus();" />
+						<input id="$!{checkboxIdentifer}" type="checkbox" class="ace" title="全选/反选" />
 						<span class="lbl"></span>
 					</label>
 				</th>

@@ -52,6 +52,9 @@
 		$$.doRequest(url, data, "post", "json", 
 				function(response) {
 					$$.unmask();
+					if (!response[$$_NS.response["status"]]) {
+						$$.alert(response[$$_NS.response["message"]]);
+					}
 					if (response[$$_NS.response["body"]] == "notLogin") {
 						$$.sendDirect($$_NS.context["ssoLoginAddress"]);
 					} else {
