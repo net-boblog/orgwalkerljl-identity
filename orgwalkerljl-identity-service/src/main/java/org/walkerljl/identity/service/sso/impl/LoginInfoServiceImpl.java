@@ -15,12 +15,12 @@ import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
  * @author lijunlin
  */
 @Service("loginInfoService")
-public class LoginInfoServiceImpl extends JqueryDatatableBaseServiceImpl<LoginInfo, Long> implements LoginInfoService {
+public class LoginInfoServiceImpl extends JqueryDatatableBaseServiceImpl<Long, LoginInfo> implements LoginInfoService {
 
 	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
-	public BaseDao<LoginInfo, Long> getDao() {
+	public BaseDao<Long, LoginInfo> getDao() {
 		return loginInfoDao;
 	}
 }

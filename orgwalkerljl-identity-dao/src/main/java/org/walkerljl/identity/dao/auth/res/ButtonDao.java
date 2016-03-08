@@ -3,16 +3,16 @@
  * The software source code all copyright belongs to the author, 
  * without permission shall not be any reproduction and transmission.
  */
-package org.walkerljl.identity.dao.auth;
+package org.walkerljl.identity.dao.auth.res;
 
-import org.walkerljl.identity.domain.auth.RoleResMapp;
+import org.walkerljl.identity.domain.auth.res.Button;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * RoleResMappingDao
+ * FunctionDao
  * 
  * @author lijunlin
  */
-public interface RoleResMappingDao extends BaseDao<Long, RoleResMapp> {
+public interface ButtonDao extends BaseDao<Long, Button> {
 
 }

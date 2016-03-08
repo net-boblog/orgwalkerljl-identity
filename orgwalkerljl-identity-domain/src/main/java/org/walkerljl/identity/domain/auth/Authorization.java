@@ -17,7 +17,7 @@ public class Authorization extends BaseAuth {
 	private static final long serialVersionUID = 1L;
 
 	/** 授权对象类型*/
-	private String objectType;
+	private Integer objectType;
 	/** 授权对象Id*/
 	private String objectId;
 	/** 授权类型*/
@@ -33,11 +33,11 @@ public class Authorization extends BaseAuth {
 	
 	public Authorization() {}
 
-	public String getObjectType() {
+	public Integer getObjectType() {
 		return objectType;
 	}
 
-	public void setObjectType(String objectType) {
+	public void setObjectType(Integer objectType) {
 		this.objectType = objectType;
 	}
 

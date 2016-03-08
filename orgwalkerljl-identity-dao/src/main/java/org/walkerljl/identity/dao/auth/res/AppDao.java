@@ -9,10 +9,10 @@ import org.walkerljl.identity.domain.auth.res.App;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * AppDao
+ * 应用数据访问接口
  * 
  * @author lijunlin
  */
-public interface AppDao extends BaseDao<App, Long> {
+public interface AppDao extends BaseDao<Long, App> {
 
 }

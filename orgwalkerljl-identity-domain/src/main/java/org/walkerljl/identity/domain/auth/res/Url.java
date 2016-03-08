@@ -7,7 +7,8 @@ package org.walkerljl.identity.domain.auth.res;
 
 /**
  * Url
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public class Url extends BaseRes {
 

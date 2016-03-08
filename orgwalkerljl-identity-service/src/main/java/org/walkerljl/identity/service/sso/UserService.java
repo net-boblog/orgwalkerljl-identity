@@ -11,7 +11,7 @@ import org.walkerljl.smart.service.JqueryDatatableBaseService;
  *
  * @author lijunlin
  */
-public interface UserService extends JqueryDatatableBaseService<User, Long> {
+public interface UserService extends JqueryDatatableBaseService<Long, User> {
 	
 	/**
 	 * 登录验证

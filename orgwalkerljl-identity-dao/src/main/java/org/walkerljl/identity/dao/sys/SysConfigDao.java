@@ -8,7 +8,7 @@ import org.walkerljl.smart.dao.BaseDao;
  *
  * @author lijunlin
  */
-public interface SysConfigDao extends BaseDao<SysConfig, Long> {
+public interface SysConfigDao extends BaseDao<Long, SysConfig> {
 
 	int updateStatusByKey2(String key);
 }

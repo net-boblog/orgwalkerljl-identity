@@ -32,7 +32,7 @@ public class SysConfigController extends JqueryDatatableCurdTemplate<SysConfig> 
 	}
 	
 	@Override
-	public JqueryDatatableBaseService<SysConfig, Long> getJqueryDatatableBaseService() {
+	public JqueryDatatableBaseService<Long, SysConfig> getJqueryDatatableBaseService() {
 		return sysConfigService;
 	}
 	

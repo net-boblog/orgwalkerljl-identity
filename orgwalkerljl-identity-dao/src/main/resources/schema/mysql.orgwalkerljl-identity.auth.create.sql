@@ -21,10 +21,6 @@ CREATE TABLE auth_res_app(
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '应用';
 /** 添加索引、约束等*/
 ALTER TABLE auth_res_app ADD UNIQUE(code);
-/** 初始化数据*/
-insert into auth_res_app(name,code,domain,icon,share_role_id,use_post_auth,manager_id,manager_name,token,remark,status,creator,created_time,modifier,modified_time)
-values
-('统一身份管理系统','idm','//idm.walkerljl.com','',0,0,'','','x','',1,'lijunlin',NOW(),'lijunlin',NOW());
 
 /**
  * 资源码
@@ -48,10 +44,7 @@ CREATE TABLE auth_res_code(
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '资源码';
 /** 添加索引、约束等*/
 ALTER TABLE auth_res_code ADD UNIQUE(code);
-/** 初始化数据*/
-insert into auth_res_code(app_id,name,code,parent_id,res_type,sensitive_type,approver_id,approver_name,remark,status,creator,created_time,modifier,modified_time)
-values
-((select id from auth_res_app where code = 'idm'),'首页','idm_index',0,1,0,'','','',1,'lijunlin',NOW(),'lijunlin',NOW());
+
 /**
  * 菜单
  */
@@ -73,29 +66,19 @@ CREATE TABLE auth_res_menu(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '菜单';
 /** 添加索引、约束等*/
-ALTER TABLE auth_res_menu ADD INDEX idx_app_id(app_id);
-ALTER TABLE auth_res_menu ADD INDEX idx_parent_id(parent_id);
 ALTER TABLE auth_res_menu ADD UNIQUE(res_code_id);
-/** 初始化数据*/
-insert into auth_res_menu(app_id,name,parent_id,res_code_id,url,icon,css,`order`,remark,status,creator,created_time,modifier,modified_time)
-values
-((select id from auth_res_app where code = 'idm'),'首页',0,(select id from auth_res_code where code = 'idm_index'),'/','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
-((select id from auth_res_app where code = 'idm'),'系统设置',(select id from auth_res_menu where res_code_id = 1),(select id from auth_res_code where code = 'idm_sys'),'/sys/config','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
-((select id from auth_res_app where code = 'idm'),'配置信息',0,(select id from auth_res_code where code = 'idm_sys_config'),'/sys/config','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
-((select id from auth_res_app where code = 'idm'),'单点登录',0,(select id from auth_res_code where code = 'idm_sso'),'/sso','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
-((select id from auth_res_app where code = 'idm'),'用户信息',0,(select id from auth_res_code where code = 'idm_sso_user'),'/sso/user','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
-((select id from auth_res_app where code = 'idm'),'登录信息',0,(select id from auth_res_code where code = 'idm_sso_logininfo'),'/sso/logininfo','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW());
+
 /**
- * 功能按钮
+ * 按钮
  */
-CREATE TABLE auth_res_fun(
+CREATE TABLE auth_res_button(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
 	app_id BIGINT(20) NOT NULL COMMENT '应用Id',
 	menu_id BIGINT(20) NOT NULL COMMENT '所属菜单Id',
 	name VARCHAR(64) NOT NULL COMMENT '名称',
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
-	url VARCHAR(256) DEFAULT NULL COMMENT 'URL',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	url VARCHAR(256) DEFAULT '' COMMENT 'URL',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -103,10 +86,8 @@ CREATE TABLE auth_res_fun(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '功能按钮';
 /** 添加索引、约束等*/
-ALTER TABLE auth_res_fun ADD INDEX auth_res_fun_index_app_id(app_id);
-ALTER TABLE auth_res_fun ADD INDEX auth_res_fun_index_menu_id(menu_id);
-ALTER TABLE auth_res_fun ADD UNIQUE(app_id,menu_id,name);
-ALTER TABLE auth_res_fun ADD UNIQUE(res_code_id);
+ALTER TABLE auth_res_button ADD INDEX idx_menu_id(menu_id);
+ALTER TABLE auth_res_button ADD UNIQUE(res_code_id);
 
 /**
  * 数据权限分类
@@ -124,8 +105,6 @@ CREATE TABLE auth_res_data_type(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '数据权限分类';
 /** 添加索引、约束等*/
-ALTER TABLE auth_res_data_type ADD INDEX auth_res_data_type_index_app_id(app_id);
-ALTER TABLE auth_res_data_type ADD INDEX auth_res_data_type_index_type_key(type_key);
 ALTER TABLE auth_res_data_type ADD UNIQUE(app_id,type_key);
 ALTER TABLE auth_res_data_type ADD UNIQUE(app_id,name);
 
@@ -147,8 +126,6 @@ CREATE TABLE auth_res_data(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '数据权限';
 /** 添加索引、约束等*/
-ALTER TABLE auth_res_data ADD INDEX auth_res_data_index_app_id(app_id);
-ALTER TABLE auth_res_data ADD INDEX auth_res_data_index_data_type_id(data_type_id);
 ALTER TABLE auth_res_data ADD UNIQUE(app_id,data_type_id,name);
 ALTER TABLE auth_res_data ADD UNIQUE(res_code_id);
 
@@ -169,7 +146,6 @@ CREATE TABLE auth_res_api(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT 'API';
 /** 添加索引、约束等*/
-ALTER TABLE auth_res_api ADD INDEX auth_res_api_index_res_app_id(app_id);
 ALTER TABLE auth_res_api ADD UNIQUE(name);
 ALTER TABLE auth_res_api ADD UNIQUE(res_code_id);
 
@@ -209,7 +185,7 @@ CREATE TABLE auth_au_role(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '角色';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_role ADD INDEX auth_au_role_index_app_id(app_id);
+ALTER TABLE auth_au_role ADD INDEX idx_app_id(app_id);
 ALTER TABLE auth_au_role ADD UNIQUE(app_id,name);
 
 /**
@@ -219,8 +195,8 @@ CREATE TABLE auth_au_role_res(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
 	role_id BIGINT(20) NOT NULL COMMENT '角色Id',
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
-	start_date DATETIME DEFAULT NULL COMMENT '生效开始日期',
-	end_date DATETIME DEFAULT NULL COMMENT '生效结束日期',
+	start_time DATETIME DEFAULT NULL COMMENT '生效开始时间',
+	end_time DATETIME DEFAULT NULL COMMENT '生效结束时间',
 	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
@@ -229,7 +205,6 @@ CREATE TABLE auth_au_role_res(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '角色、资源码授权';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_role_res ADD INDEX auth_au_role_res_index_role_id(role_id);
 ALTER TABLE auth_au_role_res ADD UNIQUE(role_id,res_code_id);
 
 /**
@@ -248,7 +223,7 @@ CREATE TABLE auth_au_dept(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '部门';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_dept ADD INDEX auth_au_dept_index_code(code);
+ALTER TABLE auth_au_dept ADD INDEX idx_code(code);
 ALTER TABLE auth_au_dept ADD UNIQUE(code);
 
 /**
@@ -268,8 +243,8 @@ CREATE TABLE auth_au_post(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '岗位';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_post ADD INDEX auth_au_post_index_code(code);
-ALTER TABLE auth_au_post ADD INDEX auth_au_post_index_dept_id(dept_id);
+ALTER TABLE auth_au_post ADD INDEX idx_code(code);
+ALTER TABLE auth_au_post ADD INDEX idx_dept_id(dept_id);
 ALTER TABLE auth_au_post ADD UNIQUE(code);
 
 /**
@@ -289,11 +264,11 @@ CREATE TABLE auth_au_post_role(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '岗位、角色授权';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_post_role ADD INDEX auth_au_post_role_index_post_id(post_id);
+ALTER TABLE auth_au_post_role ADD INDEX idx_post_id(post_id);
 ALTER TABLE auth_au_post_role ADD UNIQUE(post_id,role_id);
 
 /**
- * 授权
+ * 访问授权
  */
 CREATE TABLE auth_au_auth(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
@@ -301,8 +276,8 @@ CREATE TABLE auth_au_auth(
 	object_id VARCHAR(64) NOT NULL COMMENT '授权对象Id',
  	auth_type TINYINT(1) NOT NULL COMMENT '授权类型',
 	auth_id BIGINT(20) NOT NULL COMMENT '授权Id',
-	start_date DATETIME DEFAULT NULL COMMENT '生效开始日期',
-	end_date DATETIME DEFAULT NULL COMMENT '生效结束日期',
+	start_time DATETIME DEFAULT NULL COMMENT '生效开始时间',
+	end_time DATETIME DEFAULT NULL COMMENT '生效结束时间',
 	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
@@ -311,6 +286,6 @@ CREATE TABLE auth_au_auth(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '授权';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_auth ADD INDEX auth_au_auth_index_object_id(object_id);
-ALTER TABLE auth_au_auth ADD INDEX auth_au_auth_index_auth_id(auth_id);
+ALTER TABLE auth_au_auth ADD INDEX idx_object_id(object_id);
+ALTER TABLE auth_au_auth ADD INDEX idx_auth_id(auth_id);
 ALTER TABLE auth_au_auth ADD UNIQUE(object_type,object_id,auth_type,auth_id);

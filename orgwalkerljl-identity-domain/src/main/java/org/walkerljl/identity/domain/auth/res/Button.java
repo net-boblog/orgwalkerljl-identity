@@ -7,9 +7,10 @@ package org.walkerljl.identity.domain.auth.res;
 
 /**
  * 功能按钮
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
-public class Function extends BaseRes {
+public class Button extends BaseRes {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -18,7 +19,7 @@ public class Function extends BaseRes {
 	/** URL*/
 	private String url;
 	
-	public Function() {}
+	public Button() {}
 
 	public Long getMenuId() {
 		return menuId;

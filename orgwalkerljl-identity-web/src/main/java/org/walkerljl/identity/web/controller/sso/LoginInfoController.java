@@ -33,7 +33,7 @@ public class LoginInfoController extends JqueryDatatableCurdTemplate<LoginInfo> 
 	}
 
 	@Override
-	public JqueryDatatableBaseService<LoginInfo, Long> getJqueryDatatableBaseService() {
+	public JqueryDatatableBaseService<Long, LoginInfo> getJqueryDatatableBaseService() {
 		return loginInfoService;
 	}
 }

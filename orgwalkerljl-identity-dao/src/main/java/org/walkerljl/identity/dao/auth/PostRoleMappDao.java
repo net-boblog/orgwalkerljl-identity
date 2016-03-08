@@ -13,6 +13,6 @@ import org.walkerljl.smart.dao.BaseDao;
  * 
  * @author lijunlin
  */
-public interface PostRoleMappingDao extends BaseDao<Long, PostRoleMapp> {
+public interface PostRoleMappDao extends BaseDao<Long, PostRoleMapp> {
 
 }

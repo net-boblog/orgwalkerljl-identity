@@ -6,8 +6,9 @@
 package org.walkerljl.identity.domain.auth;
 
 /**
- * Post
- * @author lijunlin<walkerljl@qq.com>
+ * 权限部门
+ * 
+ * @author lijunlin
  */
 public class Post extends BaseAuth {
 

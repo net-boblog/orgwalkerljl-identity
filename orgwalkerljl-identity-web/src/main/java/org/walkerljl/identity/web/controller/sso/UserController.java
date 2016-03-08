@@ -33,7 +33,7 @@ public class UserController extends JqueryDatatableCurdTemplate<User> {
 	}
 
 	@Override
-	public JqueryDatatableBaseService<User, Long> getJqueryDatatableBaseService() {
+	public JqueryDatatableBaseService<Long, User> getJqueryDatatableBaseService() {
 		return userService;
 	}
 }

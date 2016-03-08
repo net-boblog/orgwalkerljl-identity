@@ -11,7 +11,7 @@ import org.walkerljl.smart.dao.impl.BaseDaoImpl;
  * @author lijunlin
  */
 @Component("sysConfigDao")
-public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Long> implements SysConfigDao {
+public class SysConfigDaoImpl extends BaseDaoImpl<Long, SysConfig> implements SysConfigDao {
 
 	public SysConfigDaoImpl() {
 		super.baseNameSpace = "org.walkerljl.smart.dao.sys.SysConfigDao";

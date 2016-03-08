@@ -8,6 +8,6 @@ import org.walkerljl.smart.dao.BaseDao;
  *
  * @author lijunlin
  */
-public interface LoginInfoDao extends BaseDao<LoginInfo, Long> {
+public interface LoginInfoDao extends BaseDao<Long, LoginInfo> {
 
 }

@@ -31,7 +31,7 @@ public class AppController extends JqueryDatatableCurdTemplate<App> {
 	}
 	
 	@Override
-	public JqueryDatatableBaseService<App, Long> getJqueryDatatableBaseService() {
+	public JqueryDatatableBaseService<Long, App> getJqueryDatatableBaseService() {
 		return appService;
 	}
 }

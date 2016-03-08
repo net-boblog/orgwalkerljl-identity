@@ -8,7 +8,7 @@ import org.walkerljl.smart.service.JqueryDatatableBaseService;
  *
  * @author lijunlin
  */
-public interface SysConfigService extends JqueryDatatableBaseService<SysConfig, Long> {
+public interface SysConfigService extends JqueryDatatableBaseService<Long, SysConfig> {
 
 	void testTransaction();
 }

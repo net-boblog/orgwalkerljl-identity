@@ -11,6 +11,6 @@ import org.walkerljl.smart.dao.impl.BaseDaoImpl;
  * @author lijunlin
  */
 @Repository("appDao")
-public class AppDaoImpl extends BaseDaoImpl<App, Long> implements AppDao {
+public class AppDaoImpl extends BaseDaoImpl<Long, App> implements AppDao {
 
 }

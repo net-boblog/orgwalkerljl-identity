@@ -8,8 +8,9 @@ package org.walkerljl.identity.domain.auth;
 import java.util.Date;
 
 /**
- * RoleResMapping
- * @author lijunlin<walkerljl@qq.com>
+ * 角色、资源映射
+ * 
+ * @author lijunlin
  */
 public class RoleResMapp extends BaseAuth {
 
@@ -19,10 +20,10 @@ public class RoleResMapp extends BaseAuth {
 	private Long roleId;
 	/** 资源码Id*/
 	private Long resCodeId;
-	/** 授权生效开始时期*/
-	private Date startDate;
-	/** 授权生效结束时期*/
-	private Date endDate;
+	/** 授权生效开始时间*/
+	private Date startTime;
+	/** 授权生效结束时间*/
+	private Date endTime;
 	
 	//扩展属性
 	/** 是否使用授权生效周期, 0:未使用,1:使用*/
@@ -46,20 +47,20 @@ public class RoleResMapp extends BaseAuth {
 		this.resCodeId = resCodeId;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStartTime() {
+		return startTime;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getEndTime() {
+		return endTime;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 
 	public Integer getUseEffCycle() {

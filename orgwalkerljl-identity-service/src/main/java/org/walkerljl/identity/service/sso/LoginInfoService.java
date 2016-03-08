@@ -8,6 +8,6 @@ import org.walkerljl.smart.service.JqueryDatatableBaseService;
  *
  * @author lijunlin
  */
-public interface LoginInfoService extends JqueryDatatableBaseService<LoginInfo, Long> {
+public interface LoginInfoService extends JqueryDatatableBaseService<Long, LoginInfo> {
 
 }

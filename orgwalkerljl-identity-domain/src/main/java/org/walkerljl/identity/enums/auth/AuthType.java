@@ -7,7 +7,8 @@ package org.walkerljl.identity.enums.auth;
 
 /**
  * 授权类型
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public enum AuthType {
 

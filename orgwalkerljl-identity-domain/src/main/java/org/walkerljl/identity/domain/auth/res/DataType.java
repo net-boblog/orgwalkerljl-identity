@@ -7,7 +7,8 @@ package org.walkerljl.identity.domain.auth.res;
 
 /**
  * 数据权限分类
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public class DataType extends BaseRes {
 

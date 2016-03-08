@@ -8,8 +8,9 @@ package org.walkerljl.identity.domain.auth;
 import java.util.Date;
 
 /**
- * RolePostMapping
- * @author lijunlin<walkerljl@qq.com>
+ * 岗位、角色映射
+ * 
+ * @author lijunlin
  */
 public class PostRoleMapp extends BaseAuth {
 

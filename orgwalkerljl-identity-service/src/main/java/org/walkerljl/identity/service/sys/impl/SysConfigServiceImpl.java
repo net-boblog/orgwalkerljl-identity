@@ -18,12 +18,12 @@ import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
  * @author lijunlin
  */
 @Service("sysConfigService")
-public class SysConfigServiceImpl extends JqueryDatatableBaseServiceImpl<SysConfig, Long> implements SysConfigService {
+public class SysConfigServiceImpl extends JqueryDatatableBaseServiceImpl<Long, SysConfig> implements SysConfigService {
 
 	@Resource private SysConfigDao sysConfigDao;
 	
 	@Override
-	public BaseDao<SysConfig, Long> getDao() {
+	public BaseDao<Long, SysConfig> getDao() {
 		return sysConfigDao;
 	}
 
