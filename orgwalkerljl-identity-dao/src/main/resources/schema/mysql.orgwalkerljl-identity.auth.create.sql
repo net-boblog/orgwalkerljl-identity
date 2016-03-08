@@ -20,6 +20,11 @@ CREATE TABLE auth_res_app(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '应用';
 /** 添加索引、约束等*/
+ALTER TABLE auth_res_app ADD UNIQUE(code);
+/** 初始化数据*/
+insert into auth_res_app(name,code,domain,icon,share_role_id,use_post_auth,manager_id,manager_name,token,remark,status,creator,created_time,modifier,modified_time)
+values
+('统一身份管理系统','idm','//idm.walkerljl.com','',0,0,'','','x','',1,'lijunlin',NOW(),'lijunlin',NOW());
 
 /**
  * 资源码
@@ -43,7 +48,10 @@ CREATE TABLE auth_res_code(
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '资源码';
 /** 添加索引、约束等*/
 ALTER TABLE auth_res_code ADD UNIQUE(code);
-
+/** 初始化数据*/
+insert into auth_res_code(app_id,name,code,parent_id,res_type,sensitive_type,approver_id,approver_name,remark,status,creator,created_time,modifier,modified_time)
+values
+((select id from auth_res_app where code = 'idm'),'首页','idm_index',0,1,0,'','','',1,'lijunlin',NOW(),'lijunlin',NOW());
 /**
  * 菜单
  */
@@ -68,7 +76,15 @@ CREATE TABLE auth_res_menu(
 ALTER TABLE auth_res_menu ADD INDEX idx_app_id(app_id);
 ALTER TABLE auth_res_menu ADD INDEX idx_parent_id(parent_id);
 ALTER TABLE auth_res_menu ADD UNIQUE(res_code_id);
-
+/** 初始化数据*/
+insert into auth_res_menu(app_id,name,parent_id,res_code_id,url,icon,css,`order`,remark,status,creator,created_time,modifier,modified_time)
+values
+((select id from auth_res_app where code = 'idm'),'首页',0,(select id from auth_res_code where code = 'idm_index'),'/','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
+((select id from auth_res_app where code = 'idm'),'系统设置',(select id from auth_res_menu where res_code_id = 1),(select id from auth_res_code where code = 'idm_sys'),'/sys/config','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
+((select id from auth_res_app where code = 'idm'),'配置信息',0,(select id from auth_res_code where code = 'idm_sys_config'),'/sys/config','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
+((select id from auth_res_app where code = 'idm'),'单点登录',0,(select id from auth_res_code where code = 'idm_sso'),'/sso','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
+((select id from auth_res_app where code = 'idm'),'用户信息',0,(select id from auth_res_code where code = 'idm_sso_user'),'/sso/user','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
+((select id from auth_res_app where code = 'idm'),'登录信息',0,(select id from auth_res_code where code = 'idm_sso_logininfo'),'/sso/logininfo','','',0,'',1,'lijunlin',NOW(),'lijunlin',NOW());
 /**
  * 功能按钮
  */
