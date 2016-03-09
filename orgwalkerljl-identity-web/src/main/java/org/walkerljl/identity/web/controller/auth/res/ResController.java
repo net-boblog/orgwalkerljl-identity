@@ -1,4 +1,4 @@
-package org.walkerljl.identity.web.controller.auth;
+package org.walkerljl.identity.web.controller.auth.res;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,16 +8,20 @@ import org.walkerljl.commons.auth.Authentication;
 import org.walkerljl.smart.mvc.BaseController;
 
 /**
- * 应用资源管理
+ * 权限资源管理
  * 
  * @author lijunlin
  */
 @Controller @Authentication
 @RequestMapping(value = "/auth/res", method = {RequestMethod.POST, RequestMethod.GET})
-public class AppResController extends BaseController {
+public class ResController extends BaseController {
 
+	public ResController() {
+		setTemplateBasePath("/auth/res");
+	}
+	
 	@RequestMapping(value = "", method = {RequestMethod.GET})
 	public ModelAndView index(Long appId) {
-		return null;
+		return toViewResult(getTemplate("index"));
 	}
 }
