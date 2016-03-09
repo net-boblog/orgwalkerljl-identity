@@ -22,19 +22,56 @@ public enum AuthType {
 	 */
 	POST(2, "岗位授权");
 	
-	private int value;
-	private String name;
+	/** 类型值*/
+	private final Integer value;
+	/** 类型名称*/
+	private final String name;
 	
-	private AuthType(int value, String name) {
+	/**
+	 * 私有构造函数
+	 * @param value 类型值
+	 * @param name 类型名称
+	 */
+	private AuthType(Integer value, String name) {
 		this.value = value;
 		this.name = name;
 	}
-	
-	public int getValue() {
-		return this.value;
+
+	/**
+	 * 获取类型值
+	 * @return
+	 */
+	public Integer getValue() {
+		return value;
+	}
+
+	/**
+	 * 获取类型名称
+	 * @return
+	 */
+	public String getName() {
+		return name;
 	}
 	
-	public String getName() {
-		return this.name;
+	/**
+	 * 获取类型对象
+	 * @param value
+	 * @return
+	 */
+	public static AuthType getType(Integer value) {
+		if (value == null || value.intValue() == 0) {
+			return null;
+		}
+		for (AuthType element : AuthType.values()) {
+			if (element.getValue().intValue() == value.intValue()) {
+				return element;
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public String toString() {
+		return getValue().toString();
 	}
 }

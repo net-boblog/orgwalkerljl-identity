@@ -36,4 +36,4 @@
 
 
 ##导入js
-<script src="$!{localStaticRes}/js/auth/res/app.js?v=$!{v}"></script>
+<script src="$!{localStaticRes}/js/auth/dept.js?v=$!{v}"></script>

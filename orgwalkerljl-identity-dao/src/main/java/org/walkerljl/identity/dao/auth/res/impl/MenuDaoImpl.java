@@ -11,6 +11,6 @@ import org.walkerljl.smart.dao.impl.BaseDaoImpl;
  * @author lijunlin
  */
 @Repository("menuDao")
-public class MenuDaoImpl extends BaseDaoImpl<Menu, Long> implements MenuDao {
+public class MenuDaoImpl extends BaseDaoImpl<Long, Menu> implements MenuDao {
 
 }

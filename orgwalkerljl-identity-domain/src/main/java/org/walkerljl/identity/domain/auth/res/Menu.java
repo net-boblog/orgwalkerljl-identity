@@ -18,6 +18,8 @@ public class Menu extends BaseRes {
 
 	private static final long serialVersionUID = 1L;
 	
+	/** 父ID*/@Column("parent_id")
+	private Long parentId;
 	/** URL*/@Column("url")
 	private String url;
 	/** 菜单图标*/@Column("icon")
@@ -34,6 +36,14 @@ public class Menu extends BaseRes {
 	 */
 	public Menu() {
 		super();
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+	
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getUrl() {

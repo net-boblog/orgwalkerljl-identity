@@ -1,8 +1,7 @@
-DROP TABLE IF EXISTS auth_appkey;
-DROP TABLE IF EXISTS auth_res_code;
 DROP TABLE IF EXISTS auth_res_app;
+DROP TABLE IF EXISTS auth_res_code;
 DROP TABLE IF EXISTS auth_res_menu;
-DROP TABLE IF EXISTS auth_res_fun;
+DROP TABLE IF EXISTS auth_res_button;
 DROP TABLE IF EXISTS auth_res_data_type;
 DROP TABLE IF EXISTS auth_res_data;
 DROP TABLE IF EXISTS auth_res_api;

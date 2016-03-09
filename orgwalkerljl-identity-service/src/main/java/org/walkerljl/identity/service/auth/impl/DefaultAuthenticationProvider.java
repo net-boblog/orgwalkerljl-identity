@@ -10,9 +10,6 @@ import org.walkerljl.commons.auth.Menu;
 import org.walkerljl.commons.collection.CollectionUtils;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.util.StringUtils;
-import org.walkerljl.identity.domain.auth.Authorization;
-import org.walkerljl.identity.domain.auth.PostRoleMapp;
-import org.walkerljl.identity.domain.auth.res.App;
 import org.walkerljl.identity.service.auth.AuthorizationService;
 import org.walkerljl.identity.service.auth.PostRoleMappService;
 import org.walkerljl.identity.service.auth.PostService;
@@ -26,55 +23,42 @@ import org.walkerljl.identity.service.auth.res.MenuService;
  */
 public class DefaultAuthenticationProvider implements AuthenticationProvider {
 
+	/** appId*/
+	private Long appId;
+	/** token*/
+	private String token;
+	
 	@Resource private MenuService menuService;
 	@Resource private AuthorizationService authorizationService;
 	@Resource private RoleResMappService roleResMappService;
 	@Resource private PostService postService;
 	@Resource private PostRoleMappService postRoleMappService;
 	
+	public void setAppId(Long appId) {
+		this.appId = appId;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@Override
 	public List<Menu> getUserAuthMenus(String userId) {
 		if (StringUtils.isBlank(userId)) {
 			return null;
 		}
-		App app = getCurApp();
-		List<Long> authRoleIds = ListUtils.newArrayList();
-//		if (app.getUsePostAuth()) {
-//			authorizationService.queryPostAuthsByUserId(userId);
-//		}
-		authorizationService.queryRoleAuthsByUserId(userId);
-		return null;
-	}
-	
-	private App getCurApp() {
-		return null;	
-	}
-	
-	private List<Long> getAuthRoleIds(String userId) {
-		List<Authorization> auths = authorizationService.querytPostAuthsByUserId(userId);
-		if (CollectionUtils.isEmpty(auths)) {
+		org.walkerljl.identity.domain.auth.res.Menu condition = new org.walkerljl.identity.domain.auth.res.Menu();
+		List<org.walkerljl.identity.domain.auth.res.Menu> authMenus = menuService.selectList(condition);
+		if (CollectionUtils.isEmpty(authMenus)) {
 			return null;
 		}
-		List<Long> authIds = ListUtils.newArrayList();
-		for (Authorization auth : auths) {
-			if (auth.isEnabled()) {
-				authIds.add(auth.getAuthId());
-			}
+		List<Menu> menus = ListUtils.newArrayList();
+		for (org.walkerljl.identity.domain.auth.res.Menu authMenu : authMenus) {
+			menus.add(new Menu(authMenu.getId(), authMenu.getName(), authMenu.getParentId(), 
+					authMenu.getOrder(), authMenu.getUrl(), authMenu.getIcon(), 
+					authMenu.getCss(), authMenu.getResCodeStr()));
 		}
-		if (CollectionUtils.isEmpty(authIds)) {
-			return null;
-		}
-		List<PostRoleMapp> postRoleMapps = postRoleMappService.selectByPostIds(authIds);
-		if (CollectionUtils.isEmpty(postRoleMapps)) {
-			return null;
-		}
-		List<Long> roleIds = ListUtils.newArrayList();
-		for (PostRoleMapp postRoleMapp : postRoleMapps) {
-			if (postRoleMapp.isEnabled()) {
-				roleIds.add(postRoleMapp.getRoleId());
-			}
-		}
-		return roleIds;
+		return menus;
 	}
 
 	@Override
@@ -103,7 +87,6 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public boolean validateUserAuth(String userId, String authCode) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

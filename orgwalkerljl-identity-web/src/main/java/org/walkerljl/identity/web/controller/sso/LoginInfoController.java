@@ -19,14 +19,14 @@ import org.walkerljl.smart.service.JqueryDatatableBaseService;
  * @author lijunlin
  */
 @Controller @Authentication(type = AuthType.CODE, code = "sso-logininfo")
-@RequestMapping(value = "/sso/loginInfo", method = {RequestMethod.POST, RequestMethod.GET})
+@RequestMapping(value = "/sso/logininfo", method = {RequestMethod.POST, RequestMethod.GET})
 public class LoginInfoController extends JqueryDatatableCurdTemplate<LoginInfo> {
 
 	@Resource private LoginInfoService loginInfoService;
 	
 	public LoginInfoController() {
 		setPageTitle("登录信息");
-		setTemplateBasePath("/sso/loginInfo");
+		setTemplateBasePath("/sso/logininfo");
 		setParentMenus(new Menu("单点登录", null));
 		//禁用按钮
 		setButtonActives(new Integer[]{0,0,0,1,0,0,0});

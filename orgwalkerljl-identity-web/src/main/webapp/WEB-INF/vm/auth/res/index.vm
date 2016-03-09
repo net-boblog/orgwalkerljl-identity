@@ -1,0 +1,257 @@
+##资源码管理主界面
+<div id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li><i class="icon-cog" style="font-size:18px;"></i><a href="javascript:return false;">应用资源管理</a></i>
+	</ul>
+</div>
+<!--breadcrumb end -->
+
+<div id="page-content" class="clearfix">
+	<div class="row-fluid">
+		##查询条件
+		<form class="well form-search" name="resSerarchForm" action="" method="POST">
+			选择应用:
+			<select id="webApp" name="webApp" onchange="appResMgr.changeApp();" class="chosen-select-no-results">
+				<option value="0">--请选择--</option>
+				#foreach($item in ${apps})
+					<option value="$!{item.id}">$!{item.name}#if($!{item.status}=='1')(启用) #elseif($!{item.status}=='2')(停用) #else (删除) #end</option>
+				#end
+			</select>
+            #if(${UIM-JIM-AM-04-25} == true)
+                <div class="btn-group" style="margin-right:10px;">
+                    <a class="btn dropdown-toggle btn-info" data-toggle="dropdown"><i class="icon-search"></i>请选择资源类型<span class="caret"></span></a>
+                    <ul class="dropdown-menu textL pull-right">
+                        <li><a onclick="appResMgr.changeResType('webapp.menu');">资源类型【菜单资源】</a></li>
+                        <li><a onclick="appResMgr.changeResType('webapp.url');">资源类型【URL资源】</a></li>
+                        <li><a onclick="appResMgr.changeResType('webapp.api');">资源类型【API接口资源】</a></li>
+                        <li><a onclick="appResMgr.changeResType('data.type');">资源类型【数据权限分类资源】</a></li>
+                        <li><a onclick="appResMgr.changeResType('data');">资源类型【数据权限资源】</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" style="margin-right:10px;" id="btn_menu_gp">
+                    <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown"><i class="icon-plus-sign-alt"></i> 新建资源<span class="caret"></span></a>
+                    <ul class="dropdown-menu textL pull-right">
+                        <li><a onclick="appResMgr.loadAddMenuPage(-1);">新建【一级菜单资源】</a></li>
+                        <li><a onclick="appResMgr.loadAddMenuPage(1);">新建【同级菜单资源】</a></li>
+                        <li><a onclick="appResMgr.loadAddMenuPage(2);">新建【下级菜单资源】</a></li>
+                        <li><a onclick="appResMgr.loadAddMenuFunPage();">新建【菜单功能资源】</a></li>
+                    ##<li class="divider"></li>
+                    ##<li><a onclick="appResMgr.loadAddAppUrlPage();">新建【URL资源】</a></li>
+                    ##<li><a onclick="appResMgr.loadAddAppApiPage();">新建【API接口资源】</a></li>
+                    ##<li class="divider"></li>
+                    ##<li><a onclick="appResMgr.loadAddDataTypePage();">新建【数据权限分类】</a></li>
+                    ##<li><a onclick="appResMgr.loadAddDataPage();">新建【数据权限资源】</a></li>
+                    </ul>
+                </div>
+
+            #end
+
+			<div style="float:right">
+                #if(${UIM-JIM-AM-04-25} == true)
+                    <button class="btn btn-small btn-success" type="button" onclick="appResMgr.addRes();"style="display:none;" id="btn_other_gp">
+                        <i class="icon-plus-sign"></i>
+                        新建
+                    </button>
+                    <button class="btn btn-small btn-success" type="button" onclick="appResMgr.batchUpdateStatus(1);">
+                        <i class="icon-plus-sign"></i>
+                        启用
+                    </button>
+                    <button class="btn btn-small btn-warning" type="button" onclick="appResMgr.batchUpdateStatus(2);">
+                        <i class="icon-minus-sign"></i>
+                        停用
+                    </button>
+                    <button class="btn btn-warning btn-small" type="button" onclick="appResMgr.batchUpdateStatus(3);">
+                        <i class="icon-trash"></i>
+                        删除
+                    </button>
+
+                #end
+                #if(${UIM-JIM-AM-04-26} == true)
+                    <button class="btn btn-small btn-danger" type="button" onclick="appResMgr.batchDel();">
+                        <i class="icon-trash"></i>
+                        物理删除
+                    </button>
+                #end
+                #if(${UIM-JIM-AM-04-25} == true)
+                    <button class="btn btn-small btn-warning" type="button" onclick="appResMgr.updateRes();">
+                        <i class="icon-edit"></i>
+                        修改
+                    </button>
+                #end
+
+				<button class="btn btn-small btn-success"  type="button" onclick="appResMgr.toResInfo();" >
+					<i class="icon-file-alt"></i>
+					明细
+				</button>
+			</div>
+		</form>
+		##提示信息
+		<div class="alert">
+		  <a class="close" data-dismiss="alert">×</a>
+		  <span class="ico-tip"></span>系统默认显示应用菜单资源,您还可以通过选择其他资源类型来改变!
+		</div>
+		##应用资源管理容器
+		<div id="appResContainer"></div>
+</div>
+<script src="$!{system_staticResource}/plugin/jquery/jquery.ztree.core-3.5.js?v=$!{v}"></script>
+<script src="$!{system_staticResource}/plugin/jquery/jquery.ztree.excheck-3.5.js?v=$!{v}"></script>
+<script src="$!{system_staticResource}/plugin/jquery/jquery.ztree.exedit-3.5.min.js?v=$!{v}"></script>
+<script src="$!{system_staticResource}/plugin/DatePicker/WdatePicker.js?v=$!{v}"></script>
+<link href="$!{system_staticResource}/css/zTreeStyle.css?v=$!{v}" rel="stylesheet"/>
+<script src="$!{system_staticResource}/plugin/jquery/chosen.jquery.js?v=$!{v}"></script>
+<link href="$!{system_staticResource}/css/chosen.min.css?v=$!{v}" rel="stylesheet">
+<SCRIPT type="text/javascript">
+	//应用资源管理JS对象
+	var appResMgr = {
+		curResType:"webapp.menu",//应用资源类型,默认菜单资源
+		changeAppFlag:true,//改变应用时是否做操作,默认要
+		init:function(){//初始化函数
+			appResMgr.changeAppFlag=true;
+			UIM.loadContainer("appResContainer","$!{system_basUrl}/popedom/appRes/loadPageByType",{resType:appResMgr.curResType});
+			$("#webApp").chosen({width:"260px"});
+		},
+		changeResType:function(type){//修改应用资源类型
+			appResMgr.curResType=type;
+			if(appResMgr.curResType=='webapp.menu'){
+				$("#btn_menu_gp").css("display","");
+				$("#btn_other_gp").css("display","none");
+			}else{
+				$("#btn_menu_gp").css("display","none");
+				$("#btn_other_gp").css("display","");
+			}
+			appResMgr.init();
+		},
+		addRes:function(){//新建资源
+			if(appResMgr.curResType=="webapp.url"){//当前选中应用URL资源
+				appResMgr.loadAddAppUrlPage();
+			}else if(appResMgr.curResType=="webapp.api"){//当前选中Api资源
+				appResMgr.loadAddAppApiPage();
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appResMgr.loadAddDataTypePage();
+			}else if(appResMgr.curResType=="data"){//当前选中数据权限资源
+				appResMgr.loadAddDataPage();
+			}
+		},
+		changeApp:function(){//改变应用系统事件
+			if(!appResMgr.changeAppFlag){
+				return;//不做任何操作
+			}
+			if(appResMgr.curResType=="webapp.menu"){//当前选中应用菜单资源
+				appResMenuMgr.searchTree();
+			}else if(appResMgr.curResType=="webapp.url"){//当前选中应用URL资源
+				appUrlMgm.reloadTable();
+			}else if(appResMgr.curResType=="webapp.api"){//当前选中Api资源
+				appApiMgm.reloadTable();
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appDataTypeMgm.reloadTable();
+			}else if(appResMgr.curResType=="data"){//当前选中数据权限资源
+				appDataMgm.searchTree();
+			}
+		},
+		batchUpdateStatus:function(flag){//批量修改状态
+			if(appResMgr.curResType=="webapp.menu"){//当前选中应用菜单资源
+				appResMenuMgr.batchUpdateStatus(flag);
+			}else if(appResMgr.curResType=="webapp.url"){//当前选中应用URL资源
+				appUrlMgm.batchUpdateUrlStatus(flag);
+			}else if(appResMgr.curResType=="webapp.api"){
+				appApiMgm.batchUpdateApiStatus(flag);
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appDataTypeMgm.batchUpdateDataTypeStatus(flag);
+			}else if(appResMgr.curResType=="data"){//当前选中数据权资源
+				appDataMgm.batchUpdateDataStatus(flag);
+			}
+		},
+		batchDel:function(){//批量物理删除
+			if(appResMgr.curResType=="webapp.menu"){//当前选中应用菜单资源
+				appResMenuMgr.batchDel();
+			}else if(appResMgr.curResType=="webapp.url"){//当前选中应用URL资源
+				appUrlMgm.batchDel();
+			}else if(appResMgr.curResType=="webapp.api"){//当前选中API资源
+				appApiMgm.batchDel();
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appDataTypeMgm.batchDel();
+			}else if(appResMgr.curResType=="data"){//当前选中数据权资源
+				appDataMgm.batchDel();
+			}
+		},
+		loadAddMenuPage:function(flag){//加载新增菜单界面
+			if(appResMgr.curResType!="webapp.menu"){
+				alert("当前显示的资源类型为非菜单资源,请切换到菜单资源再操作!");
+				return;
+			}
+			appResMenuMgr.loadAddMenuPage(flag);
+		},
+		loadAddMenuFunPage:function(){//打开新建菜单功能界面
+			if(appResMgr.curResType!="webapp.menu"){
+				alert("当前显示的资源类型为非菜单资源,请切换到菜单资源再操作!");
+				return;
+			}
+			appResMenuMgr.loadAddMenuFunPage();
+		},
+		loadAddAppUrlPage:function(){//打开新增URL资源界面
+			if(appResMgr.curResType!="webapp.url"){
+				alert("当前显示的资源类型为非URL资源,请切换到URL资源再操作!");
+				return;
+			}
+			appResMgr.changeAppFlag=false;
+			appUrlMgm.loadAddAppUrlPage();
+		},
+		loadAddAppApiPage:function(){//打开新建API资源界面
+			if(appResMgr.curResType!="webapp.api"){
+				alert("当前显示的资源类型为非API资源,请切换到API资源再操作!");
+				return;
+			}
+			appResMgr.changeAppFlag=false;
+			appApiMgm.loadAddAppApiPage();
+		},
+		loadAddDataTypePage:function(){//打开新建数据权限分类资源界面
+			if(appResMgr.curResType!="data.type"){
+				alert("当前显示的资源类型为非数据权限分类资源,请切换到数据权限分类资源再操作!");
+				return;
+			}
+			appDataTypeMgm.loadAddAppDataTypePage();
+		},
+		loadAddDataPage:function(){//打开新增数据权限资源界面
+			if(appResMgr.curResType!="data"){
+				alert("当前显示的资源类型为非数据权限资源,请切换到数据权限资源再操作!");
+				return;
+			}
+			appDataMgm.toAddDataPage();
+		},
+		updateRes:function(){//修改资源
+			appResMgr.changeAppFlag=false;
+			if(appResMgr.curResType=="webapp.url"){//当前选择的是URL资源
+				appUrlMgm.toUpdateUrlPage();
+			}else if(appResMgr.curResType=="webapp.api"){//当前选择的是API资源
+				appApiMgm.toUpdateUrlPage();
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appResMgr.changeAppFlag=true;
+				appDataTypeMgm.toUpdateDataTypePage();
+			}else if(appResMgr.curResType=="data"){//当前选中数据权资源
+				appResMgr.changeAppFlag=true;
+				appDataMgm.toUpdateDataPage();
+			}else{
+				appResMgr.changeAppFlag=true;
+				alert("当前选择的资源类型,可以通过点击树节点直接修改");
+			}
+		},
+		toResInfo:function(){//打开资源明细
+			appResMgr.changeAppFlag=false;
+			if(appResMgr.curResType=="webapp.url"){//当前选择的是URL资源
+				appUrlMgm.toAppUrlInfoPage();
+			}else if(appResMgr.curResType=="webapp.api"){//当前选择的是API资源
+				appApiMgm.toAppApiInfoPage();
+			}else if(appResMgr.curResType=="data.type"){//当前选中数据权分类资源
+				appResMgr.changeAppFlag=true;
+				appDataTypeMgm.toAppDataTypeInfoPage();
+			}else if(appResMgr.curResType=="data"){//当前选中数据权资源
+				appResMgr.changeAppFlag=true;
+				appDataMgm.toAppDataInfoPage();
+			}else{
+				appResMgr.changeAppFlag=true;
+				alert("当前选择的资源类型,可以通过点击树节点直接查看明细");
+			}
+		}
+	};
+	UIM.load=appResMgr.init;
+</SCRIPT>

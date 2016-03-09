@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.Dept;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * DeptDao
+ * 部门数据访问接口
  * 
  * @author lijunlin
  */

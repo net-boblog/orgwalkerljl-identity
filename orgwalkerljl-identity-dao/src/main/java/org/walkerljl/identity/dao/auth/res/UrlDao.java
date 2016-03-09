@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.res.Url;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * UrlDao
+ * URL数据访问接口
  * 
  * @author lijunlin
  */

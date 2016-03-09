@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.res.Button;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * FunctionDao
+ * 按钮数据访问接口
  * 
  * @author lijunlin
  */

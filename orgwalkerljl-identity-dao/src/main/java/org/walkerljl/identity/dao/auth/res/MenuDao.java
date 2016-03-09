@@ -9,10 +9,10 @@ import org.walkerljl.identity.domain.auth.res.Menu;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * MenuDao
+ * 菜单数据访问接口
  * 
  * @author lijunlin
  */
-public interface MenuDao extends BaseDao<Menu, Long> {
+public interface MenuDao extends BaseDao<Long, Menu> {
 
 }

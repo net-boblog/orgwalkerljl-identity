@@ -17,12 +17,12 @@ import org.walkerljl.smart.service.impl.BaseServiceImpl;
  * @author lijunlin
  */
 @Service("menuService")
-public class MenuServiceImpl extends BaseServiceImpl<Menu, Long> implements MenuService {
+public class MenuServiceImpl extends BaseServiceImpl<Long, Menu> implements MenuService {
 
 	@Resource private MenuDao menuDao;
 	
 	@Override
-	public BaseDao<Menu, Long> getDao() {
+	public BaseDao<Long, Menu> getDao() {
 		return menuDao;
 	}
 

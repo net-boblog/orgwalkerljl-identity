@@ -3,7 +3,7 @@
  * The software source code all copyright belongs to the author, 
  * without permission shall not be any reproduction and transmission.
  */
-package org.walkerljl.identity.domain.auth.res;
+package org.walkerljl.identity.domain;
 
 import org.walkerljl.db.api.annotation.Column;
 import org.walkerljl.db.api.annotation.Entity;
@@ -14,7 +14,7 @@ import org.walkerljl.smart.domain.JqueryDatatableBaseDomain;
  * 
  * @author lijunlin
  */
-@Entity("auth_res_app")
+@Entity("idm_app")
 public class App extends JqueryDatatableBaseDomain {
 	
 	private static final long serialVersionUID = 1L;

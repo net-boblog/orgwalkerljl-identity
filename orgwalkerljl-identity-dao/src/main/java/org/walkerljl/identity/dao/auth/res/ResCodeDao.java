@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.res.ResCode;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * ResCodeDao
+ * 资源码数据访问接口
  * 
  * @author lijunlin
  */

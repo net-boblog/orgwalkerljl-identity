@@ -97,7 +97,7 @@ CREATE TABLE auth_res_data_type(
 	app_id BIGINT(20) NOT NULL COMMENT '所属应用Id',
 	name VARCHAR(64) NOT NULL COMMENT '数据权限类型名称',
 	type_key VARCHAR(64) NOT NULL COMMENT '类型Key',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -117,8 +117,8 @@ CREATE TABLE auth_res_data(
 	data_type_id BIGINT(20) NOT NULL COMMENT '所属分类Id',
 	name VARCHAR(64) NOT NULL COMMENT '数据权限名称',
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
-	data_key VARCHAR(64) DEFAULT NULL COMMENT 'Key',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	data_key VARCHAR(64) DEFAULT '' COMMENT 'Key',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -138,7 +138,7 @@ CREATE TABLE auth_res_api(
 	name VARCHAR(64) NOT NULL COMMENT 'Api名称',
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
 	address VARCHAR(512) NOT NULL COMMENT '地址',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -158,7 +158,7 @@ CREATE TABLE auth_res_url(
 	name VARCHAR(64) NOT NULL COMMENT 'Url名称',
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
 	address VARCHAR(512) NOT NULL COMMENT '地址',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -177,7 +177,7 @@ CREATE TABLE auth_au_role(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
 	app_id BIGINT(20) NOT NULL COMMENT '所属应用Id',
 	name VARCHAR(64) NOT NULL COMMENT '角色名称',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -185,7 +185,6 @@ CREATE TABLE auth_au_role(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '角色';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_role ADD INDEX idx_app_id(app_id);
 ALTER TABLE auth_au_role ADD UNIQUE(app_id,name);
 
 /**
@@ -197,7 +196,7 @@ CREATE TABLE auth_au_role_res(
 	res_code_id BIGINT(20) NOT NULL COMMENT '资源码Id',
 	start_time DATETIME DEFAULT NULL COMMENT '生效开始时间',
 	end_time DATETIME DEFAULT NULL COMMENT '生效结束时间',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -212,10 +211,11 @@ ALTER TABLE auth_au_role_res ADD UNIQUE(role_id,res_code_id);
  */
 CREATE TABLE auth_au_dept(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
-	name VARCHAR(512) NOT NULL COMMENT '部门名称',
-	code VARCHAR(16) NOT NULL COMMENT '部门编码',
-	parent_id BIGINT(20) NOT NULL COMMENT '父级部门Id,根节点Id为0',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	name VARCHAR(512) NOT NULL COMMENT '名称',
+	code VARCHAR(16) NOT NULL COMMENT '编码',
+	parent_id BIGINT(20) NOT NULL COMMENT '父级Id,根节点Id为0',
+	full_name VARCHAR(512) DEFAULT '' COMMENT '全称',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -223,7 +223,6 @@ CREATE TABLE auth_au_dept(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '部门';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_dept ADD INDEX idx_code(code);
 ALTER TABLE auth_au_dept ADD UNIQUE(code);
 
 /**
@@ -232,10 +231,10 @@ ALTER TABLE auth_au_dept ADD UNIQUE(code);
 CREATE TABLE auth_au_post(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
 	dept_id BIGINT(20) NOT NULL COMMENT '部门Id',
-	name VARCHAR(512) NOT NULL COMMENT '岗位名称',
-	code VARCHAR(16) NOT NULL COMMENT '岗位编码',
-	simple_name VARCHAR(64) NOT NULL COMMENT '岗位简称',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	name VARCHAR(128) NOT NULL COMMENT '名称',
+	code VARCHAR(16) NOT NULL COMMENT '编码',
+	full_name VARCHAR(512) DEFAULT '' COMMENT '全称',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -243,7 +242,6 @@ CREATE TABLE auth_au_post(
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '岗位';
 /** 添加索引、约束等*/
-ALTER TABLE auth_au_post ADD INDEX idx_code(code);
 ALTER TABLE auth_au_post ADD INDEX idx_dept_id(dept_id);
 ALTER TABLE auth_au_post ADD UNIQUE(code);
 
@@ -254,9 +252,9 @@ CREATE TABLE auth_au_post_role(
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT COMMENT '主键Id',
 	post_id BIGINT(20) NOT NULL COMMENT '岗位Id',
 	role_id BIGINT(20) NOT NULL COMMENT '角色Id',
-	start_date DATETIME DEFAULT NULL COMMENT '生效开始日期',
-	end_date DATETIME DEFAULT NULL COMMENT '生效结束日期',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	start_time DATETIME DEFAULT NULL COMMENT '生效开始时间',
+	end_time DATETIME DEFAULT NULL COMMENT '生效结束时间',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
@@ -278,14 +276,13 @@ CREATE TABLE auth_au_auth(
 	auth_id BIGINT(20) NOT NULL COMMENT '授权Id',
 	start_time DATETIME DEFAULT NULL COMMENT '生效开始时间',
 	end_time DATETIME DEFAULT NULL COMMENT '生效结束时间',
-	remark VARCHAR(256) DEFAULT NULL COMMENT '备注',
+	remark VARCHAR(256) DEFAULT '' COMMENT '备注',
 	status TINYINT(1) NOT NULL COMMENT '状态,1:启用,2:停用,3:删除',
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created_time DATETIME NOT NULL COMMENT '创建时间',
 	modifier VARCHAR(64) NOT NULL COMMENT '修改者',
 	modified_time DATETIME NOT NULL COMMENT '修改时间'
-)ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '授权';
+)ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '访问授权';
 /** 添加索引、约束等*/
 ALTER TABLE auth_au_auth ADD INDEX idx_object_id(object_id);
 ALTER TABLE auth_au_auth ADD INDEX idx_auth_id(auth_id);
-ALTER TABLE auth_au_auth ADD UNIQUE(object_type,object_id,auth_type,auth_id);

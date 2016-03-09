@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.res.DataType;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * DataTypeDao
+ * 数据类型数据访问接口
  * 
  * @author lijunlin
  */

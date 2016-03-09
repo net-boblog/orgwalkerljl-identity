@@ -1,10 +1,10 @@
-package org.walkerljl.identity.service.auth.res;
+package org.walkerljl.identity.service;
 
-import org.walkerljl.identity.domain.auth.res.App;
+import org.walkerljl.identity.domain.App;
 import org.walkerljl.smart.service.JqueryDatatableBaseService;
 
 /**
- * AppService
+ * 应用业务逻辑接口
  * 
  * @author lijunlin
  */

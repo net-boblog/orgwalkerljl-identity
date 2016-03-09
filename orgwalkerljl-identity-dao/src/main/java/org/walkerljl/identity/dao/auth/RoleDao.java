@@ -9,7 +9,7 @@ import org.walkerljl.identity.domain.auth.Role;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * RoleDao
+ * 角色数据访问接口
  * 
  * @author lijunlin
  */
