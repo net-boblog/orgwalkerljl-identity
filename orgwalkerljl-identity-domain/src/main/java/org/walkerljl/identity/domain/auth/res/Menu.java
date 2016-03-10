@@ -30,6 +30,8 @@ public class Menu extends BaseRes {
 	private Integer order;
 	
 	//======扩展属性
+	/** 是否*/
+	private Boolean isParent;
 	
 	/**
 	 * 默认构造函数
@@ -76,5 +78,13 @@ public class Menu extends BaseRes {
 
 	public void setOrder(Integer order) {
 		this.order = order;
+	}
+
+	public Boolean getIsParent() {
+		return isParent;
+	}
+
+	public void setIsParent(Boolean isParent) {
+		this.isParent = isParent;
 	}
 }

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.walkerljl.commons.auth.Authentication;
 import org.walkerljl.commons.data.model.tree.TreeNode;
-import org.walkerljl.commons.util.NumUtils;
 import org.walkerljl.identity.domain.App;
 import org.walkerljl.identity.domain.auth.res.Menu;
 import org.walkerljl.identity.service.AppService;
 import org.walkerljl.identity.service.auth.res.MenuService;
-import org.walkerljl.smart.mvc.BaseController;
+import org.walkerljl.smart.mvc.template.CurdTemplate;
+import org.walkerljl.smart.service.BaseService;
 
 /**
  * MenuController
@@ -24,10 +24,16 @@ import org.walkerljl.smart.mvc.BaseController;
  */
 @Controller @Authentication
 @RequestMapping(value = "/auth/res/menu", method = {RequestMethod.POST, RequestMethod.GET})
-public class MenuController extends BaseController {
+public class MenuController extends CurdTemplate<Menu> {
 
 	@Resource private MenuService menuService;
 	@Resource private AppService appService;
+	
+	public MenuController() {
+		setTemplateBasePath("/auth/res/menu");
+		setCurrentUrl("/auth/res/menu");
+		setObjectIdentifer("authResMenu");
+	}
 	
 	@RequestMapping(value = "/loadMenuTree")
 	public ModelAndView loadMenuTree(Long appId, Long id) {		
@@ -39,15 +45,19 @@ public class MenuController extends BaseController {
 				node.setId("0");
 				node.setParentId("-1");
 				node.setName(app.getName());
-				node.setIcon("dir");
 				node.setParent(true);
 			}
 			return toSimpleJSON(node, TreeNode.getZtreeNodeFormat());
 		} else {
 			Menu condition = new Menu();
 			condition.setParentId(id);
-			List<Menu> menus = menuService.selectList(condition);
-			return toSimpleJSON(menus, TreeNode.getZtreeNodeFormat());
+			List<TreeNode> nodes = menuService.queryChildNodesByAppIdAndParentId(appId, id);
+			return toSimpleJSON(nodes);
 		}	
+	}
+
+	@Override
+	public BaseService<Long, Menu> getService() {
+		return menuService;
 	}
 }

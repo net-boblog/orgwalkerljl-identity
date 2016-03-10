@@ -8,37 +8,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.walkerljl.commons.auth.Authentication;
 import org.walkerljl.commons.auth.Menu;
-import org.walkerljl.identity.domain.sys.SysConfig;
-import org.walkerljl.identity.service.sys.SysConfigService;
+import org.walkerljl.identity.domain.sys.Config;
+import org.walkerljl.identity.service.sys.ConfigService;
 import org.walkerljl.smart.mvc.template.JqueryDatatableCurdTemplate;
 import org.walkerljl.smart.service.JqueryDatatableBaseService;
 
 /**
- * 系统配置 
+ * 应用配置 
  *
  * @author lijunlin
  */
 @Controller @Authentication
 @RequestMapping(value = "/sys/config", method = {RequestMethod.POST, RequestMethod.GET})
-public class SysConfigController extends JqueryDatatableCurdTemplate<SysConfig> {
+public class ConfigController extends JqueryDatatableCurdTemplate<Config> {
 
-	@Resource private SysConfigService sysConfigService;
+	@Resource private ConfigService configService;
 	
-	public SysConfigController() {
-		setPageTitle("系统配置管理");
-		setObjectIdentifer("sysConfig");
+	public ConfigController() {
+		setPageTitle("配置信息管理");
+		setObjectIdentifer("config");
 		setTemplateBasePath("/sys/config");
 		setParentMenus(new Menu("系统设置", null));
 	}
 	
 	@Override
-	public JqueryDatatableBaseService<Long, SysConfig> getJqueryDatatableBaseService() {
-		return sysConfigService;
+	public JqueryDatatableBaseService<Long, Config> getJqueryDatatableBaseService() {
+		return configService;
 	}
 	
 	@RequestMapping(value = "testTransaction")
 	public ModelAndView testTransaction() {
-		sysConfigService.testTransaction();
+		configService.testTransaction();
 		return toJSON("testTransaction");
 	}
 }
