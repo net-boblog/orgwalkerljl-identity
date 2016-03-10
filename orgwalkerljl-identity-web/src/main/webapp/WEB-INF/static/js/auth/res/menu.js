@@ -60,4 +60,4 @@
 	$$.addConstructor(function() {
 		$$_NS.initTree();
 	});
-})(GLOBAL_NS, "auth.menu");
+})(GLOBAL_NS, "auth.res.menu");
