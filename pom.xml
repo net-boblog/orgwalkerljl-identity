@@ -18,9 +18,9 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<orgwalkerljl.commons.version>1.0.2-SNAPSHOT</orgwalkerljl.commons.version>
+		<orgwalkerljl.commons.version>1.1.0-SNAPSHOT</orgwalkerljl.commons.version>
 		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
-		<orgwalkerljl.smart.version>1.0.0-SNAPSHOT</orgwalkerljl.smart.version>
+		<orgwalkerljl.smart.version>1.1.0-SNAPSHOT</orgwalkerljl.smart.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
