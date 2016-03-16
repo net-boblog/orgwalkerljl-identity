@@ -5,15 +5,18 @@ import org.walkerljl.db.api.annotation.Entity;
 import org.walkerljl.smart.domain.JqueryDatatableBaseDomain;
 
 /**
- * 系统配置
+ * 应用配置
  *
  * @author lijunlin
  */
-@Entity("sys_config")
-public class SysConfig extends JqueryDatatableBaseDomain {
+@Entity("idm_config")
+public class Config extends JqueryDatatableBaseDomain {
 
 	private static final long serialVersionUID = 1L;
 	
+	/** 应用ID*/
+	@Column("app_id")
+	private Long appId;
 	/** 名称*/
 	@Column("name")
 	private String name;
@@ -26,8 +29,16 @@ public class SysConfig extends JqueryDatatableBaseDomain {
 	/**
 	 * 默认构造函数
 	 */
-	public SysConfig() {}
+	public Config() {}
 	
+	public Long getAppId() {
+		return appId;
+	}
+
+	public void setAppId(Long appId) {
+		this.appId = appId;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -54,6 +65,6 @@ public class SysConfig extends JqueryDatatableBaseDomain {
 
 	@Override
 	public String toString() {
-		return "SysConfig [key=" + key + ", value=" + value + "]";
+		return "AppConfig [key=" + key + ", value=" + value + "]";
 	}
 }

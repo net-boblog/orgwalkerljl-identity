@@ -16,13 +16,16 @@
 	
 	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
 	<typeAliases>
+		<typeAlias type="org.walkerljl.commons.data.model.tree.TreeNode" alias="treeNode" />
 		<typeAlias type="org.walkerljl.identity.domain.sso.User" alias="user" />
+		<typeAlias type="org.walkerljl.identity.domain.auth.res.Menu" alias="menu" />
 	</typeAliases>
 	
 	<!-- 映射文件路径-->
 	<mappers>
 		<mapper resource="org.walkerljl.smart.dao/BaseDao.xml" />
 		<mapper resource="sqlMap/UserDao.xml" />
+		<mapper resource="sqlMap/auth/res/MenuDao.xml" />
 	</mappers>
 	 
 </configuration>

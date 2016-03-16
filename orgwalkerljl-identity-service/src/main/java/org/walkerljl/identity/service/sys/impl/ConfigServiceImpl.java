@@ -6,33 +6,33 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.walkerljl.identity.dao.sys.SysConfigDao;
-import org.walkerljl.identity.domain.sys.SysConfig;
-import org.walkerljl.identity.service.sys.SysConfigService;
+import org.walkerljl.identity.dao.sys.ConfigDao;
+import org.walkerljl.identity.domain.sys.Config;
+import org.walkerljl.identity.service.sys.ConfigService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
 
 /**
- * SysConfigServiceImpl 
+ * ConfigServiceImpl 
  *
  * @author lijunlin
  */
-@Service("sysConfigService")
-public class SysConfigServiceImpl extends JqueryDatatableBaseServiceImpl<Long, SysConfig> implements SysConfigService {
+@Service("configService")
+public class ConfigServiceImpl extends JqueryDatatableBaseServiceImpl<Long, Config> implements ConfigService {
 
-	@Resource private SysConfigDao sysConfigDao;
+	@Resource private ConfigDao configDao;
 	
 	@Override
-	public BaseDao<Long, SysConfig> getDao() {
-		return sysConfigDao;
+	public BaseDao<Long, Config> getDao() {
+		return configDao;
 	}
 
 	@Override @Transactional(rollbackFor = Exception.class)
 	public void testTransaction() {
-		sysConfigDao.updateStatusByKey2("system.upgrading");
+		configDao.updateStatusByKey2("system.upgrading");
 		
 		for (int i = 1; i <= 2; i++) {
-			SysConfig sysConfig = new SysConfig();
+			Config sysConfig = new Config();
 			sysConfig.setName(i + "");
 			sysConfig.setKey(i + "");
 			sysConfig.setValue(i + "");

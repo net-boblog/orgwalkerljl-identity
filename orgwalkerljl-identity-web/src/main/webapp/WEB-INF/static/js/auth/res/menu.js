@@ -39,16 +39,14 @@
 			},
 			callback : {
 				onClick : function(event, treeId, treeNode) {
-					if(treeNode.resType=='dir'){return;}
-					$("#menu_title_msg").html("");
-					appResMenuMgr.curSelectMenuId=treeNode.id; 
-					appResMenuMgr.curSelectMenuName=treeNode.name;
-					//var str = appResMenuMgr.listChildren(treeNode, str);
-					//alert(str);
-					UIM.loadContainer('res-menu-data-form','$!{system_basUrl}/popedom/appRes/toUpdateAppResMenuPage.json',{menuId:treeNode.id});
+					if (treeNode.resType == 'dir') {
+						return;
+					}
+					$$.loadPage($$.MVC.URL.edit+"?menuId="+treeNode.id, "appResMenuForm",  
+							{});
 				},
 				onAsyncSuccess : function(event, treeId, treeNode, msg){
-					appResMenuMgr.expandNodes(treeNode.children);
+					//appResMenuMgr.expandNodes(treeNode.children);
 				}
 			}
 		});

@@ -1,14 +1,14 @@
 package org.walkerljl.identity.dao.sys;
 
-import org.walkerljl.identity.domain.sys.SysConfig;
+import org.walkerljl.identity.domain.sys.Config;
 import org.walkerljl.smart.dao.BaseDao;
 
 /**
- * 系统配置数据访问接口 
+ * 配置信息数据访问接口 
  *
  * @author lijunlin
  */
-public interface SysConfigDao extends BaseDao<Long, SysConfig> {
+public interface ConfigDao extends BaseDao<Long, Config> {
 
 	int updateStatusByKey2(String key);
 }
