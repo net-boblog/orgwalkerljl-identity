@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.walkerljl.commons.auth.AuthenticationProvider;
-import org.walkerljl.commons.auth.Button;
-import org.walkerljl.commons.auth.Menu;
 import org.walkerljl.commons.collection.CollectionUtils;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.util.StringUtils;
+import org.walkerljl.identity.sdk.auth.AuthenticationProvider;
+import org.walkerljl.identity.sdk.auth.Button;
+import org.walkerljl.identity.sdk.auth.Menu;
 import org.walkerljl.identity.service.auth.AuthorizationService;
 import org.walkerljl.identity.service.auth.PostRoleMappService;
 import org.walkerljl.identity.service.auth.PostService;
