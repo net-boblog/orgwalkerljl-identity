@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.walkerljl.identity</groupId>
+	<groupId>org.walkerljl</groupId>
 	<artifactId>orgwalkerljl-identity</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -83,35 +83,24 @@
 		<dependencies>
 			<!-- orgwalkerljl-smart -->
 			<dependency>
-				<groupId>org.walkerljl.smart</groupId>
+				<groupId>org.walkerljl</groupId>
 				<artifactId>orgwalkerljl-smart-domain</artifactId>
 				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.smart</groupId>
+				<groupId>org.walkerljl</groupId>
 				<artifactId>orgwalkerljl-smart-dao</artifactId>
 				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.smart</groupId>
+				<groupId>org.walkerljl</groupId>
 				<artifactId>orgwalkerljl-smart-service</artifactId>
 				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.smart</groupId>
+				<groupId>org.walkerljl</groupId>
 				<artifactId>orgwalkerljl-smart-mvc</artifactId>
 				<version>${orgwalkerljl.smart.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.walkerljl.remoting</groupId>
-				<artifactId>orgwalkerljl-remoting-api</artifactId>
-				<version>${orgwalkerljl.remoting.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.remoting</groupId>
-				<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
-				<version>${orgwalkerljl.remoting.version}</version>
 			</dependency>
 
 			<dependency>
