@@ -15,9 +15,6 @@ import org.walkerljl.identity.service.auth.PostRoleMappService;
 import org.walkerljl.identity.service.auth.PostService;
 import org.walkerljl.identity.service.auth.RoleResMappService;
 import org.walkerljl.identity.service.auth.res.MenuService;
-import org.walkerljl.sdk.identity.auth.AuthenticationProvider;
-import org.walkerljl.sdk.identity.auth.Button;
-import org.walkerljl.sdk.identity.auth.Menu;
 
 /**
  * 默认的权限提供者
