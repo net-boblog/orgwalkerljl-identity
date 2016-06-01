@@ -1,9 +1,9 @@
 package org.walkerljl.identity.service.auth;
 
-import java.util.List;
-
 import org.walkerljl.identity.domain.auth.Authorization;
 import org.walkerljl.smart.service.BaseService;
+
+import java.util.List;
 
 /**
  * 授权业务接口

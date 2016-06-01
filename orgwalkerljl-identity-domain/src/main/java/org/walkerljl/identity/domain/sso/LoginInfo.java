@@ -1,12 +1,12 @@
 package org.walkerljl.identity.domain.sso;
 
 
-import java.util.Date;
-
 import org.walkerljl.db.api.annotation.Column;
 import org.walkerljl.db.api.annotation.Entity;
 import org.walkerljl.identity.enums.sso.AgentType;
 import org.walkerljl.smart.domain.JqueryDatatableBaseDomainNoRule;
+
+import java.util.Date;
 
 /**
  * 登录信息

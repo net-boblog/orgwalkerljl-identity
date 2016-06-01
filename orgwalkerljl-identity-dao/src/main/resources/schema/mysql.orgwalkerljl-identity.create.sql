@@ -237,7 +237,7 @@ CREATE TABLE auth_au_role(
 	creator VARCHAR(64) NOT NULL COMMENT '创建者',
 	created DATETIME NOT NULL COMMENT '创建时间',
 	modifier VARCHAR(64) NOT NULL COMMENT '修改者',
-	modified_time DATETIME NOT NULL COMMENT '修改时间'
+	modified DATETIME NOT NULL COMMENT '修改时间'
 )ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '角色';
 /** 添加索引、约束等*/
 ALTER TABLE auth_au_role ADD UNIQUE(app_id,name);

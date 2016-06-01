@@ -11,11 +11,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.walkerljl</groupId>
-			<artifactId>orgwalkerljl-identity-sdk</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.walkerljl</groupId>
 			<artifactId>orgwalkerljl-identity-dao</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>

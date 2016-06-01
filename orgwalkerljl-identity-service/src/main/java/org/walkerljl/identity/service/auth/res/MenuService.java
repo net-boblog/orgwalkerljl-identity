@@ -1,10 +1,10 @@
 package org.walkerljl.identity.service.auth.res;
 
-import java.util.List;
-
 import org.walkerljl.commons.data.model.tree.TreeNode;
 import org.walkerljl.identity.domain.auth.res.Menu;
 import org.walkerljl.smart.service.BaseService;
+
+import java.util.List;
 
 /**
  * 菜单业务逻辑接口

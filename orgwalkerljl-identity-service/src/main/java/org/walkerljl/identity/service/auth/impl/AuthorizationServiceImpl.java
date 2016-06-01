@@ -1,9 +1,5 @@
 package org.walkerljl.identity.service.auth.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.walkerljl.identity.dao.auth.AuthorizationDao;
 import org.walkerljl.identity.domain.auth.Authorization;
@@ -13,6 +9,9 @@ import org.walkerljl.identity.service.auth.AuthorizationService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.enums.Status;
 import org.walkerljl.smart.service.impl.BaseServiceImpl;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * AuthorizationServiceImpl

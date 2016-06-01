@@ -1,8 +1,8 @@
 package org.walkerljl.identity.pojo.sso;
 
-import java.io.Serializable;
-
 import org.walkerljl.identity.enums.sso.AgentType;
+
+import java.io.Serializable;
 
 /**
  * 登录命令

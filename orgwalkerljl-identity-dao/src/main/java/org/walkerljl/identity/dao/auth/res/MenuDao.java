@@ -5,11 +5,11 @@
  */
 package org.walkerljl.identity.dao.auth.res;
 
-import java.util.List;
-
 import org.walkerljl.commons.data.model.tree.TreeNode;
 import org.walkerljl.identity.domain.auth.res.Menu;
 import org.walkerljl.smart.dao.BaseDao;
+
+import java.util.List;
 
 /**
  * 菜单数据访问接口

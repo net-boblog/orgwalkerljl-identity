@@ -1,9 +1,9 @@
 package org.walkerljl.identity.service.auth;
 
-import java.util.List;
-
 import org.walkerljl.identity.domain.auth.PostRoleMapp;
 import org.walkerljl.smart.service.BaseService;
+
+import java.util.List;
 
 /**
  * 岗位、角色映射业务接口

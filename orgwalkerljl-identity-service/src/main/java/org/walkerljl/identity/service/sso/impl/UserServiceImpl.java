@@ -1,10 +1,5 @@
 package org.walkerljl.identity.service.sso.impl;
 
-import java.util.Date;
-import java.util.Random;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.walkerljl.commons.Message;
@@ -19,6 +14,10 @@ import org.walkerljl.identity.service.sso.UserService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.enums.Status;
 import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
+
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -186,7 +185,7 @@ public class UserServiceImpl extends JqueryDatatableBaseServiceImpl<Long, User> 
 			return Message.failure("用户已经确认，不能重新确认");
 		}
 		user.setStatus(Status.ENABLED.getValue());
-		user.setModifiedTime(new Date());
+		user.setModified(new Date());
 		return Message.create(userDao.updateByKey(user, user.getId()) > 0);
 	}
 

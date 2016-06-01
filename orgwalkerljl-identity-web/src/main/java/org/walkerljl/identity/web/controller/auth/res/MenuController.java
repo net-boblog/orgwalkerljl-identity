@@ -1,9 +1,5 @@
 package org.walkerljl.identity.web.controller.auth.res;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +13,9 @@ import org.walkerljl.identity.service.auth.res.MenuService;
 import org.walkerljl.smart.mvc.ObjectIdentifier;
 import org.walkerljl.smart.mvc.template.CurdTemplate;
 import org.walkerljl.smart.service.BaseService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * MenuController

@@ -1,0 +1,4 @@
+call mvn clean
+pause
+
+

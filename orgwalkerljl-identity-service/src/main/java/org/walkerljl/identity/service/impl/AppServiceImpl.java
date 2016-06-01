@@ -1,13 +1,13 @@
 package org.walkerljl.identity.service.impl;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.walkerljl.identity.dao.AppDao;
 import org.walkerljl.identity.domain.App;
 import org.walkerljl.identity.service.AppService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
+
+import javax.annotation.Resource;
 
 /**
  * AppServiceImpl

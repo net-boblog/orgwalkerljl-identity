@@ -1,7 +1,5 @@
 package org.walkerljl.identity.web.controller.sys;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +11,8 @@ import org.walkerljl.identity.service.sys.ConfigService;
 import org.walkerljl.smart.mvc.ObjectIdentifier;
 import org.walkerljl.smart.mvc.template.JqueryDatatableCurdTemplate;
 import org.walkerljl.smart.service.JqueryDatatableBaseService;
+
+import javax.annotation.Resource;
 
 /**
  * 应用配置 

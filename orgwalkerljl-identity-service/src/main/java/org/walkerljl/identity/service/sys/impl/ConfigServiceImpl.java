@@ -1,9 +1,5 @@
 package org.walkerljl.identity.service.sys.impl;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.walkerljl.identity.dao.sys.ConfigDao;
@@ -11,6 +7,9 @@ import org.walkerljl.identity.domain.sys.Config;
 import org.walkerljl.identity.service.sys.ConfigService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
+
+import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * ConfigServiceImpl 
@@ -39,9 +38,9 @@ public class ConfigServiceImpl extends JqueryDatatableBaseServiceImpl<Long, Conf
 			sysConfig.setRemark(i + "");
 			sysConfig.setStatus(1);
 			sysConfig.setCreator("lijunlin");
-			sysConfig.setCreatedTime(new Date());
+			sysConfig.setCreated(new Date());
 			sysConfig.setModifier(sysConfig.getModifier());
-			sysConfig.setModifiedTime(sysConfig.getModifiedTime());
+			sysConfig.setModified(sysConfig.getCreated());
 			if (i == 2) {
 				throw new RuntimeException("testTransaction");
 			}

@@ -1,14 +1,14 @@
 /** 
  * 应用
  */
-insert into idm_app(id,name,code,domain,icon,share_role_id,use_post_auth,manager_id,manager_name,token,remark,status,creator,created_time,modifier,modified_time)
+insert into idm_app(id,name,code,domain,icon,share_role_id,use_post_auth,manager_id,manager_name,token,remark,status,creator,created,modifier,modified)
 values
 (1,'统一身份管理系统','idm','//idm.walkerljl.com','',0,0,'','','x','',1,'lijunlin',NOW(),'lijunlin',NOW());
 
 /**
  * 应用配置
  */
-INSERT INTO idm_config(app_id,name,`key`,`value`,remark,status,creator,created_time,modifier,modified_time)
+INSERT INTO idm_config(app_id,name,`key`,`value`,remark,status,creator,created,modifier,modified)
 VALUES
 (1,'系统是否正在升级','system.upgrading','false','',1,'lijunlin',NOW(),'lijunlin',NOW()),
 (1,'系统管理员列表','admins','jarvis','',1,'lijunlin',NOW(),'lijunlin',NOW()),
@@ -17,7 +17,7 @@ VALUES
 /**
  * 资源码
  */
-insert into auth_res_code(id,app_id,name,code,parent_id,res_type,sensitive_type,approver_id,approver_name,remark,status,creator,created_time,modifier,modified_time)
+insert into auth_res_code(id,app_id,name,code,parent_id,res_type,sensitive_type,approver_id,approver_name,remark,status,creator,created,modifier,modified)
 values
 (1,0,'首页','index',0,1,0,'','','',1,'lijunlin',NOW(),'lijunlin',NOW()),
 (2,1,'系统配置','sys',1,1,0,'','','',1,'lijunlin',NOW(),'lijunlin',NOW()),
@@ -39,7 +39,7 @@ values
 /**
  * 菜单
  */
-insert into auth_res_menu(id,app_id,name,parent_id,res_code_id,url,icon,css,`order`,remark,status,creator,created_time,modifier,modified_time)
+insert into auth_res_menu(id,app_id,name,parent_id,res_code_id,url,icon,css,`order`,remark,status,creator,created,modifier,modified)
 values
 (1,1,'首页',0,1,'/','icon-desktop','',1,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
 (2,1,'系统管理',0,2,'/sys','icon-dashboard','',2,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
@@ -61,14 +61,14 @@ values
 /**
  * 角色
  */
-insert into auth_au_role(id,app_id,name,remark,status,creator,created_time,modifier,modified_time)
+insert into auth_au_role(id,app_id,name,remark,status,creator,created,modifier,modified)
 values
 (1,1,'系统管理员','',1,'lijunlin',NOW(),'lijunlin',NOW());
 
 /**
  * 角色、资源码授权
  */
-insert into auth_au_role_res(role_id,res_code_id,start_time,end_time,remark,status,creator,created_time,modifier,modified_time)
+insert into auth_au_role_res(role_id,res_code_id,start_time,end_time,remark,status,creator,created,modifier,modified)
 values
 (1,1,null,null,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
 (1,2,null,null,'',1,'lijunlin',NOW(),'lijunlin',NOW()),
@@ -90,6 +90,6 @@ values
 /**
  * 访问授权
  */
-insert into auth_au_auth(object_type,object_id,auth_type,auth_id,start_time,end_time,remark,status,creator,created_time,modifier,modified_time)
+insert into auth_au_auth(object_type,object_id,auth_type,auth_id,start_time,end_time,remark,status,creator,created,modifier,modified)
 values
 (1,'lijunlin',1,1,null,null,'',1,'lijunlin',NOW(),'lijunlin',NOW());

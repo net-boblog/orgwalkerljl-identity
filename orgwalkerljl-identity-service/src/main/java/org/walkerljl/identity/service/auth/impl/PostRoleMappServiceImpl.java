@@ -1,15 +1,14 @@
 package org.walkerljl.identity.service.auth.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.walkerljl.identity.dao.auth.PostRoleMappDao;
 import org.walkerljl.identity.domain.auth.PostRoleMapp;
 import org.walkerljl.identity.service.auth.PostRoleMappService;
 import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.service.impl.BaseServiceImpl;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * PostRoleMappServiceImpl
